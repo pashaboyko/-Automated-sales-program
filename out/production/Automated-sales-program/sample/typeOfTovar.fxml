@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TypeOfTovar">
+   <children>
+      <Label layoutX="58.0" layoutY="36.0" text="Choose type product">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="foodButton" layoutX="81.0" layoutY="98.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="194.0" text="Food" />
+      <Button fx:id="clothesButton" layoutX="81.0" layoutY="171.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="194.0" text="Clothes" />
+      <Button fx:id="techButton" layoutX="81.0" layoutY="243.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="194.0" text="Tech" />
+   </children>
+</AnchorPane>

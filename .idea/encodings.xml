@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/sample/AddClothes.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/AddFood.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/AddTech.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Admin.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Bill_form.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/ChooseColor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Connectionn.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Controller.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Controller1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/DeleteTovar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/EditPrice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Good.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Good1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/InfoAboutClothes.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/InfoAboutFood.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/InfoAboutTech.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Listfortovar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/OutputPrinter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Start.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/Start1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/TypeOfTovar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/pojo/Clothes.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/pojo/Date.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/pojo/Food.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/pojo/Product.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sample/pojo/Tech.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

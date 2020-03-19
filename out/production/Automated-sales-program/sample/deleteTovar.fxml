@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeleteTovar">
+    <children>
+        <TableView fx:id="tableUsers" layoutX="90.0" layoutY="153.0" prefHeight="695.0" prefWidth="810.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="80.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="232.5023193359375" text="Name" />
+                <TableColumn fx:id="barcodeColumn" prefWidth="210.4976806640625" text="Barcode" />
+                <TableColumn fx:id="priceColumn" prefWidth="286.369140625" text="Price" />
+            </columns>
+        </TableView>
+      <Label layoutX="361.0" layoutY="29.0" prefHeight="53.0" prefWidth="310.0" text="Delete Product">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label layoutX="389.0" layoutY="75.0" prefHeight="53.0" prefWidth="644.0" text="(Double click on Table)">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="25.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@900.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="33.0" layoutY="33.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="45.0" text="Button" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin">
+   <children>
+      <Text layoutX="239.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode Admin" wrappingWidth="284.26593017578125" AnchorPane.leftAnchor="239.0">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Text>
+      <Button fx:id="addTovar" layoutX="237.0" layoutY="493.0" mnemonicParsing="false" text="Добавить Товар" AnchorPane.leftAnchor="237.0" AnchorPane.rightAnchor="924.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteTovar" layoutX="239.0" layoutY="578.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="283.0" text="Удалить Товар" AnchorPane.leftAnchor="237.0" AnchorPane.rightAnchor="924.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <ImageView blendMode="OVERLAY" fitHeight="572.0" fitWidth="727.0" layoutX="710.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="187.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="141.0">
+         <image>
+            <Image url="@administrator-male.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="adminCode" layoutX="242.0" layoutY="413.0" prefHeight="27.0" prefWidth="281.0" />
+      <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="53.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="35.0">
+         <image>
+            <Image url="@900.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="-4.0" layoutY="-2.0" mnemonicParsing="false" opacity="0.0" prefHeight="196.0" prefWidth="470.0" text="Button" />
+   </children>
+</AnchorPane>
