@@ -118,7 +118,7 @@ public class Controller {
 
 
         BarcodeText.setOnAction(event -> {
-            Listfortovar.clothess.clear();
+            /*Listfortovar.clothess.clear();
             Listfortovar.foods.clear();
             Listfortovar.techs.clear();
             Connectionn b = new Connectionn();
@@ -145,6 +145,10 @@ public class Controller {
                 }
             }
             labPrice.setText(String.format("%s", checkAll()));
+
+             */
+            Main.con.sendTOServer();
+            Main.con.listenServer();
             BarcodeText.clear();
 
 
