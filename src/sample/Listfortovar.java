@@ -15,8 +15,7 @@ public class Listfortovar {
     public static ArrayList<Food> foods = new  ArrayList<Food>();
     public static ArrayList<Tech> techs = new  ArrayList<Tech>();
 
-
-
+    public static ArrayList<Product_value> product = new  ArrayList<Product_value>();
 
 
 }

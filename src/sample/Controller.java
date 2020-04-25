@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.javadoc.SourcePosition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,39 +15,46 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.json.JSONException;
 import sample.pojo.Clothes;
 import sample.pojo.Food;
 import sample.pojo.Product;
 import sample.pojo.Tech;
+import sun.net.SocksProxy;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import javax.xml.soap.SOAPPart;
 import java.io.IOException;
 
 import static sample.Listfortovar.buyprd;
+import static sample.Listfortovar.product;
 
 public class Controller {
+    private static final String POST_URL_DEMO = " http://5fdd894c.ngrok.io/barcodeall";
+    private static final String POST_PARAMS_DEMO = "barcode=644832819197";
 
     public static double PricesforBuy=0; ;
 
-    public ObservableList<Product> productsData = FXCollections.observableArrayList();
+    public ObservableList<Product_value> productsData = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Product> tableUsers;
+    private TableView<Product_value> tableUsers;
 
     @FXML
     private Button printButton;
 
     @FXML
-    private TableColumn<Product, Integer> idColumn;
+    private TableColumn<Product_value, Integer> idColumn;
 
     @FXML
-    private TableColumn<Product, String> nameColumn;
+    private TableColumn<Product_value, String> nameColumn;
 
     @FXML
-    private TableColumn<Product, String> barcodeColumn;
+    private TableColumn<Product_value, String> barcodeColumn;
 
 
     @FXML
-    private TableColumn<Product, String> priceColumn;
+    private TableColumn<Product_value, String> priceColumn;
     @FXML
     private TextField BarcodeText;
     @FXML
@@ -64,10 +72,10 @@ public class Controller {
     @FXML
     private void initialize() {
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("barcode"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Product_value, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("name"));
+        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("barcode"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("price"));
 
 
         tableUsers.setItems(productsData);
@@ -118,6 +126,26 @@ public class Controller {
 
 
         BarcodeText.setOnAction(event -> {
+
+            try {
+                String params = String.format("barcode=%s", BarcodeText.getText());
+
+                System.out.println(
+                HttpURLConnectionExample.sendPOST(POST_URL_DEMO, params));
+                Product_value product = new Product_value(HttpURLConnectionExample.sendPOST(POST_URL_DEMO, params));
+                System.out.println(product);
+                productsData.add(product);
+                Listfortovar.product.add(product);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+
             /*Listfortovar.clothess.clear();
             Listfortovar.foods.clear();
             Listfortovar.techs.clear();
@@ -144,9 +172,10 @@ public class Controller {
 
                 }
             }
-            labPrice.setText(String.format("%s", checkAll()));
+
 
              */
+            labPrice.setText(String.format("%s", checkAll()));
             Main.con.sendTOServer();
             Main.con.listenServer();
             BarcodeText.clear();
@@ -157,10 +186,10 @@ public class Controller {
 
 
         tableUsers.setRowFactory(tv -> {
-            TableRow<Product> row = new TableRow<>();
+            TableRow<Product_value> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    Product rowData = row.getItem();
+                    Product_value rowData = row.getItem();
                     System.out.println(rowData.getBarcode());
                     showPersonEditDialog(rowData);
                 }
@@ -168,7 +197,7 @@ public class Controller {
             return row;
         });
     }
-    public boolean showPersonEditDialog(Product product) {
+    public boolean showPersonEditDialog(Product_value product) {
         try {
             System.out.println(product.getBarcode());
             // Load the fxml file and create a new stage for the popup dialog.
@@ -190,7 +219,7 @@ public class Controller {
             // Set the person into the controller.
             InfoAboutClothes controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setProduct((Clothes)product);
+            //controller.setProduct((Clothes)product);
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             return true;}
@@ -211,7 +240,7 @@ public class Controller {
                     // Set the person into the controller.
                     InfoAboutFood controller = loader.getController();
                     controller.setDialogStage(dialogStage);
-                    controller.setProduct((Food) product);
+                    //controller.setProduct((Food) product);
                     // Show the dialog and wait until the user closes it
                     dialogStage.showAndWait();
                     return true;
@@ -232,7 +261,7 @@ public class Controller {
                         // Set the person into the controller.
                         InfoAboutTech controller = loader.getController();
                         controller.setDialogStage(dialogStage);
-                        controller.setProduct((Tech) product);
+                        //controller.setProduct((Tech) product);
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
                         return true;
