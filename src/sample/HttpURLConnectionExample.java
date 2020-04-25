@@ -2,6 +2,9 @@ package sample;
 
 //import org.json.JSONObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -51,12 +54,12 @@ public class HttpURLConnectionExample {
     }
 
 
-    public static void sendPOST(String link , String params) throws IOException {
+    public static JSONObject sendPOST(String link , String params) throws IOException, JSONException {
         URL obj = new URL(link);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("authorization", "Java client");
+        //con.setRequestProperty("authorization", "Java client");
 
         // For POST only - START
         con.setDoOutput(true);
@@ -78,20 +81,28 @@ public class HttpURLConnectionExample {
             }
             in.close();
             //System.out.println(response.toString());
-            //JSONObject myResponse = new JSONObject(response.toString());
+            JSONObject myResponse = new JSONObject(response.toString());
+
+
+            return myResponse;
+
+
+
             //System.out.println(myResponse.toString());
-            System.out.println("result after Reading JSON Response");
             /*item m = new item(myResponse);
             System.out.println(m.getName());
             System.out.println(m.getBarcode());
             System.out.println(m.getPrice());
             System.out.println(m.getCategory());
             System.out.println(m.getPoints());
-            System.out.println(m.getPhoto());*/
-
-        } else {
+            System.out.println(m.getPhoto());*/}
+        else {
             System.out.println("POST request not worked");
-        }
+            throw new IOException("Not ok");
+            }
+
+
+
     }
 
 
