@@ -1,38 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  stylesheets="@stylesheet.css" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
-    <TableView fx:id="tableUsers" layoutX="585.0" layoutY="50.0" prefHeight="695.0" prefWidth="810.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="585.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="50.0">
-      <columns>
-        <TableColumn fx:id="idColumn" prefWidth="80.0" text="ID" />
-        <TableColumn fx:id="nameColumn" prefWidth="232.5023193359375" text="Name" />
-        <TableColumn fx:id="barcodeColumn" prefWidth="210.4976806640625" text="Barcode" />
-        <TableColumn fx:id="priceColumn" prefWidth="286.369140625" text="Price" />
-      </columns>
-    </TableView>
-    <Label layoutX="250.0" layoutY="214.0" prefHeight="30.0" prefWidth="189.0" text="Barcode">
-      <font>
-        <Font name="Verdana" size="24.0" />
-      </font>
-    </Label>
-      <TextField fx:id="BarcodeText" layoutX="134.0" layoutY="288.0" prefHeight="39.0" prefWidth="327.0" />
-      <TextArea editable="false" layoutX="108.0" layoutY="386.0" prefHeight="72.0" prefWidth="399.0" />
-      <Text fill="#070707" layoutX="160.0" layoutY="432.0" stroke="#eb0000" strokeType="OUTSIDE" strokeWidth="0.0"  text="Price: " underline="true" wrappingWidth="114.7166748046875">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Text>
-      <Label fx:id="labPrice" layoutX="347.0" layoutY="404.0" text="00.00">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Label>
-      <Button fx:id="printButton" layoutX="268.0" layoutY="491.0" mnemonicParsing="false" text="Print" />
+      <BorderPane layoutX="759.0" layoutY="137.0" prefHeight="536.0" prefWidth="601.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="759.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="137.0">
+         <center>
+          <TableView fx:id="tableUsers" prefHeight="496.0" prefWidth="570.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 15px;" styleClass="table" BorderPane.alignment="CENTER">
+            <columns>
+              <TableColumn fx:id="nameColumn" prefWidth="360.0" text="Name" />
+              <TableColumn fx:id="priceColumn" prefWidth="190.0" text="Price" />
+            </columns>
+               <effect>
+                  <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                     <input>
+                        <DropShadow color="WHITE" offsetX="-6.0" offsetY="-4.0" />
+                     </input>
+                  </DropShadow>
+               </effect>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+          </TableView>
+         </center>
+      </BorderPane>
+      <AnchorPane layoutX="79.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="478.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="882.0" AnchorPane.topAnchor="223.0">
+         <effect>
+            <DropShadow color="#c3cbdbe2" offsetX="6.0" offsetY="6.0">
+               <input>
+                  <DropShadow color="WHITE" offsetX="-6.0" offsetY="-6.0" />
+               </input>
+            </DropShadow>
+         </effect>
+         <children>
+            <Button fx:id="printButton" layoutX="140.0" layoutY="292.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="198.0" style="-fx-background-color: #cc33ff; -fx-background-radius: 8em;" text="Pay " textFill="WHITE" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="292.0">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#d9c3d7eb" offsetX="6.0" offsetY="6.0">
+                     <input>
+                        <DropShadow color="WHITE" offsetX="-6.0" offsetY="-6.0" />
+                     </input>
+                  </DropShadow>
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@black-and-white-credit-cards.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+          <Label layoutX="187.0" layoutY="41.0" prefHeight="30.0" prefWidth="103.0" text="Barcode">
+            <font>
+              <Font name="Verdana" size="24.0" />
+            </font>
+          </Label>
+            <TextField fx:id="BarcodeText" layoutX="82.0" layoutY="115.0" prefHeight="39.0" prefWidth="327.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="115.0" />
+            <AnchorPane layoutX="113.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="69.0" prefWidth="255.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="195.0">
+               <effect>
+                  <DropShadow color="#c3cbdbe2" offsetX="6.0" offsetY="6.0">
+                     <input>
+                        <DropShadow color="WHITE" offsetX="-6.0" offsetY="-6.0" />
+                     </input>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <Text fill="#404040" layoutX="52.0" layoutY="44.0" stroke="#eb0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Sum" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="16.0">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="labPrice" layoutX="112.0" layoutY="16.0" text="00.00" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="16.0">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="11.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@money.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
   </children>
 </AnchorPane>

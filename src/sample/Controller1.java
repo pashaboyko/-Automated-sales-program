@@ -153,20 +153,19 @@ public class Controller1 {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Product rowData = row.getItem();
                     System.out.println(rowData.getBarcode());
-                    showPersonEditDialog(rowData);
+                    //showPersonEditDialog(rowData);
                 }
             });
             return row;
         });
     }
-    public boolean showPersonEditDialog(Product product) {
+    public boolean showPersonEditDialog(Product_value product) {
         try {
-            System.out.println(product.getBarcode());
+
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            System.out.println(product.getClass().getName());
-            if(product.getClass().getName() == "sample.pojo.Clothes"){
-                System.out.println(product.getClass().getName());
+            if(product.get_category().equalsIgnoreCase( "одежда") ){
+
                 loader.setLocation(getClass().getResource("infoAboutClothes.fxml"));
 
                 AnchorPane page = (AnchorPane) loader.load();
@@ -181,13 +180,12 @@ public class Controller1 {
                 // Set the person into the controller.
                 InfoAboutClothes controller = loader.getController();
                 controller.setDialogStage(dialogStage);
-                controller.setProduct((Clothes)product);
+                controller.setProduct(product);
                 // Show the dialog and wait until the user closes it
                 dialogStage.showAndWait();
                 return true;}
             else {
-                if (product.getClass().getName() == "sample.pojo.Food") {
-                    System.out.println(product.getClass().getName());
+                if (product.get_category().equalsIgnoreCase( "продукты")) {
                     loader.setLocation(getClass().getResource("infoAboutFood.fxml"));
 
                     AnchorPane page = (AnchorPane) loader.load();
@@ -202,28 +200,29 @@ public class Controller1 {
                     // Set the person into the controller.
                     InfoAboutFood controller = loader.getController();
                     controller.setDialogStage(dialogStage);
-                    controller.setProduct((Food) product);
+                    controller.setProduct(product);
+
                     // Show the dialog and wait until the user closes it
                     dialogStage.showAndWait();
                     return true;
                 } else {
-                    if (product.getClass().getName() == "sample.pojo.Tech") {
-                        System.out.println(product.getClass().getName());
+                    if (product.get_category().equalsIgnoreCase( "техника")) {
                         loader.setLocation(getClass().getResource("infoAboutTech.fxml"));
-
                         AnchorPane page = (AnchorPane) loader.load();
+
                         // Create the dialog Stage.
                         Stage dialogStage = new Stage();
                         dialogStage.setTitle("Info about Tech");
                         dialogStage.initModality(Modality.WINDOW_MODAL);
-
+                        // Create the dialog С.
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
 
                         // Set the person into the controller.
                         InfoAboutTech controller = loader.getController();
                         controller.setDialogStage(dialogStage);
-                        controller.setProduct((Tech) product);
+                        controller.setProduct(product);
+
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
                         return true;

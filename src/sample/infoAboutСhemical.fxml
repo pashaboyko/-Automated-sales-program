@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="436.0" prefWidth="841.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.InfoAboutTech">
+<AnchorPane prefHeight="436.0" prefWidth="841.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.InfoAboutChemical">
    <children>
       <HBox layoutX="197.1875" layoutY="241.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <AnchorPane layoutX="32.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="452.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="41.0">
@@ -30,7 +30,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Guarantee" GridPane.rowIndex="5">
+                  <Label text="Environmental" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -49,7 +49,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="categoryField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="guaranteeField" focusTraversable="false" mnemonicParsing="false" selected="true" stylesheets="@stylesheet.css" text="Has guarantee" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="environmentalField" focusTraversable="false" mnemonicParsing="false" selected="true" stylesheets="@stylesheet.css" text="is eco-friendly" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="120.0" />
