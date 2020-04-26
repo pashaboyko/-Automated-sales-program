@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Listfortovar {
+    public static final String POST_URL_INFO = " http://cc2db5df.ngrok.io/info";
+
+
     public static ArrayList<Clothes> clothess = new  ArrayList<Clothes>();
     public static ArrayList<Product> buyprd = new ArrayList<Product>();
     public static ArrayList<Food> foods = new  ArrayList<Food>();

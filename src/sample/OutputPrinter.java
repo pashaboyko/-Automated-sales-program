@@ -26,6 +26,8 @@ public class OutputPrinter implements Printable
             return NO_SUCH_PAGE;
         }
 
+        System.out.println("fsddffs");
+
         // Adding the "Imageable" to the x and y puts the margins on the page.
         // To make it safe for printing.
         Graphics2D g2d = (Graphics2D)g;
@@ -33,13 +35,15 @@ public class OutputPrinter implements Printable
         int y = (int) pf.getImageableY();
         g2d.translate(x, y);
 
+        System.out.println("fsddffs");
+
         // Calculate the line height
         Font font = new Font("Serif", Font.PLAIN, 10);
         FontMetrics metrics = g.getFontMetrics(font);
         int lineHeight = metrics.getHeight();
 
         BufferedReader br = new BufferedReader(new StringReader(printData));
-
+        System.out.println("fsddffs");
         // Draw the page:
         try
         {

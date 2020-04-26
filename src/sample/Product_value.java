@@ -33,7 +33,7 @@ public class Product_value {
     }
 
     public Product_value() {
-        photo="0.jpg";
+        photo="0.png";
     }
     public Product_value(Product_value another) {
         this.id=another.id;

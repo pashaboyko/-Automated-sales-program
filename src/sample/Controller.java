@@ -30,8 +30,7 @@ import static sample.Listfortovar.buyprd;
 import static sample.Listfortovar.product;
 
 public class Controller {
-    private static final String POST_URL_DEMO = " http://5fdd894c.ngrok.io/barcodeall";
-    private static final String POST_PARAMS_DEMO = "barcode=644832819197";
+    private static final String POST_URL_DEMO = "http://cc2db5df.ngrok.io/barcodeall";
 
     public static double PricesforBuy=0; ;
 
@@ -43,14 +42,10 @@ public class Controller {
     @FXML
     private Button printButton;
 
-    @FXML
-    private TableColumn<Product_value, Integer> idColumn;
 
     @FXML
     private TableColumn<Product_value, String> nameColumn;
 
-    @FXML
-    private TableColumn<Product_value, String> barcodeColumn;
 
 
     @FXML
@@ -72,13 +67,11 @@ public class Controller {
     @FXML
     private void initialize() {
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<Product_value, Integer>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("name"));
-        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("barcode"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("price"));
 
-
         tableUsers.setItems(productsData);
+
         printButton.setOnAction(event -> {
 
           /* Printer printer = Printer.getDefaultPrinter();
@@ -118,7 +111,7 @@ public class Controller {
             Bill_form Formbill=new Bill_form();
             Formbill.startPrint();
             productsData.clear();
-            buyprd.clear();
+            product.clear();
 
         });
 
@@ -143,43 +136,8 @@ public class Controller {
                 e.printStackTrace();
             }
 
-
-
-
-            /*Listfortovar.clothess.clear();
-            Listfortovar.foods.clear();
-            Listfortovar.techs.clear();
-            Connectionn b = new Connectionn();
-            b.addtoProgramm();
-            for (int i = 0; i < Listfortovar.techs.size(); i++) {
-                if (Listfortovar.techs.get(i).getBarcode().equals(BarcodeText.getText())) {
-                    productsData.add((Listfortovar.techs.get(i)));
-                    buyprd.add((Listfortovar.techs.get(i)));
-
-                }
-            }
-            for (int i = 0; i < Listfortovar.clothess.size(); i++) {
-                if (Listfortovar.clothess.get(i).getBarcode().equals(BarcodeText.getText())) {
-                    productsData.add((Listfortovar.clothess.get(i)));
-                    buyprd.add((Listfortovar.clothess.get(i)));
-
-                }
-            }
-            for (int i = 0; i < Listfortovar.foods.size(); i++) {
-                if (Listfortovar.foods.get(i).getBarcode().equals(BarcodeText.getText())) {
-                    productsData.add((Listfortovar.foods.get(i)));
-                    buyprd.add((Listfortovar.foods.get(i)));
-
-                }
-            }
-
-
-             */
             labPrice.setText(String.format("%s", checkAll()));
-            Main.con.sendTOServer();
-            Main.con.listenServer();
             BarcodeText.clear();
-
 
         });
 
@@ -190,7 +148,6 @@ public class Controller {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Product_value rowData = row.getItem();
-                    System.out.println(rowData.getBarcode());
                     showPersonEditDialog(rowData);
                 }
             });
@@ -199,12 +156,11 @@ public class Controller {
     }
     public boolean showPersonEditDialog(Product_value product) {
         try {
-            System.out.println(product.getBarcode());
+
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            System.out.println(product.getClass().getName());
-            if(product.getClass().getName() == "sample.pojo.Clothes"){
-                System.out.println(product.getClass().getName());
+            if(product.get_category().equalsIgnoreCase( "одежда") ){
+
             loader.setLocation(getClass().getResource("infoAboutClothes.fxml"));
 
             AnchorPane page = (AnchorPane) loader.load();
@@ -219,13 +175,12 @@ public class Controller {
             // Set the person into the controller.
             InfoAboutClothes controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            //controller.setProduct((Clothes)product);
+            controller.setProduct(product);
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             return true;}
         else {
-                if (product.getClass().getName() == "sample.pojo.Food") {
-                    System.out.println(product.getClass().getName());
+                if (product.get_category().equalsIgnoreCase( "продукты")) {
                     loader.setLocation(getClass().getResource("infoAboutFood.fxml"));
 
                     AnchorPane page = (AnchorPane) loader.load();
@@ -240,32 +195,55 @@ public class Controller {
                     // Set the person into the controller.
                     InfoAboutFood controller = loader.getController();
                     controller.setDialogStage(dialogStage);
-                    //controller.setProduct((Food) product);
+                    controller.setProduct(product);
+
                     // Show the dialog and wait until the user closes it
                     dialogStage.showAndWait();
                     return true;
                 } else {
-                    if (product.getClass().getName() == "sample.pojo.Tech") {
-                        System.out.println(product.getClass().getName());
+                    if (product.get_category().equalsIgnoreCase( "техника")) {
                         loader.setLocation(getClass().getResource("infoAboutTech.fxml"));
-
                         AnchorPane page = (AnchorPane) loader.load();
+
                         // Create the dialog Stage.
                         Stage dialogStage = new Stage();
                         dialogStage.setTitle("Info about Tech");
                         dialogStage.initModality(Modality.WINDOW_MODAL);
-
+                        // Create the dialog С.
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
 
                         // Set the person into the controller.
                         InfoAboutTech controller = loader.getController();
                         controller.setDialogStage(dialogStage);
-                        //controller.setProduct((Tech) product);
+                        controller.setProduct(product);
+
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
                         return true;
+                        } else{
+                        if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
+                            loader.setLocation(getClass().getResource("infoAboutСhemical.fxml"));
+                            AnchorPane page = (AnchorPane) loader.load();
+
+                            // Create the dialog Stage.
+                            Stage dialogStage = new Stage();
+                            dialogStage.setTitle("Info about Chemical");
+                            dialogStage.initModality(Modality.WINDOW_MODAL);
+                            // Create the dialog С.
+                            Scene scene = new Scene(page);
+                            dialogStage.setScene(scene);
+
+                            // Set the person into the controller.
+                            InfoAboutChemical controller = loader.getController();
+                            controller.setDialogStage(dialogStage);
+                            controller.setProduct(product);
+
+                            // Show the dialog and wait until the user closes it
+                            dialogStage.showAndWait();
+                            return true;
                         } else return false;
+                    }
                     }
                 }
             }

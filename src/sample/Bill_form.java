@@ -10,20 +10,15 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.awt.FontMetrics;
 
-import static sample.Listfortovar.buyprd;
+import static sample.Listfortovar.product;
 
-/**
- *
- * @author mic
- */
+
 public class Bill_form extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Bill_form
-     */
 
     public PageFormat getPageFormat(PrinterJob pj)
     {
+        System.out.println("fsdd12231ffs");
 
         PageFormat pf = pj.defaultPage();
         Paper paper = pf.getPaper();
@@ -64,8 +59,8 @@ public class Bill_form extends javax.swing.JFrame {
         public double checkAll(){
 
             double c = 0;
-            for (int i = 0; i < buyprd.size(); i++) {
-                c=c+buyprd.get(i).getPrice();
+            for (int i = 0; i < product.size(); i++) {
+                c=c+product.get(i).getPrice();
             }
             return c;
         }
@@ -76,13 +71,16 @@ public class Bill_form extends javax.swing.JFrame {
         public int print(Graphics graphics, PageFormat pageFormat,int pageIndex)
                 throws PrinterException
         {
-
+            System.out.println("fsd232323dffs");
             int result = NO_SUCH_PAGE;
             if (pageIndex == 0) {
 
                 Graphics2D g2d = (Graphics2D) graphics;
+                System.out.println("1fsd23232323dffs");
 
                 double width = pageFormat.getImageableWidth();
+
+                System.out.println("2fsd23232323dffs");
 
                 g2d.translate((int) pageFormat.getImageableX(),(int) pageFormat.getImageableY());
 
@@ -97,6 +95,7 @@ public class Bill_form extends javax.swing.JFrame {
                 int priceLength=metrics.stringWidth("000000");
                 int prodLength=(int)width - idLength - amtLength - qtyLength - priceLength-17;
 
+                System.out.println("3fsd23232323dffs");
                 //    int idPosition=0;
                 //    int productPosition=idPosition + idLength + 2;
                 //    int pricePosition=productPosition + prodLength +10;
@@ -110,7 +109,7 @@ public class Bill_form extends javax.swing.JFrame {
                 int amtPosition=qtyPosition + qtyLength;
 
 
-
+                System.out.println("fsd23232323dffs");
                 try{
                     /*Draw Header*/
                     int y=20;
@@ -118,16 +117,6 @@ public class Bill_form extends javax.swing.JFrame {
                     int headerRectHeight=15;
                     int headerRectHeighta=40;
 
-
-
-                    ///////////////// Product names Get ///////////
-
-                    ///////////////// Product names Get ///////////
-
-
-                    ///////////////// Product price Get ///////////
-
-                    ///////////////// Product price Get ///////////
 
                     g2d.setFont(new Font("Monospaced",Font.PLAIN,9));
                     g2d.drawString("-------------------------------------",12,y);y+=yShift;
@@ -137,10 +126,10 @@ public class Bill_form extends javax.swing.JFrame {
                     g2d.drawString("-------------------------------------",10,y);y+=yShift;
                     g2d.drawString(" Product Name              T.Price   ",10,y);y+=yShift;
                     g2d.drawString("-------------------------------------",10,y);y+=headerRectHeight;
-                    for (int i = 0; i < buyprd.size(); i++){
+                    for (int i = 0; i < product.size(); i++){
                         char[] chars = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ,' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ,' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ,};
-                        String str = new String(chars, 0, 28-buyprd.get(i).getName().length());
-                        g2d.drawString(" "+buyprd.get(i).getName()+str+buyprd.get(i).getPrice()+"  ",10,y);y+=yShift;
+                        String str = new String(chars, 0, 28-product.get(i).getName().length());
+                        g2d.drawString(" "+product.get(i).getName()+str+product.get(i).getPrice()+"  ",10,y);y+=yShift;
                     }
                     g2d.drawString("-------------------------------------",10,y);y+=yShift;
                     g2d.drawString(" Total amount: "+checkAll()+"               ",10,y);y+=yShift;
@@ -152,7 +141,7 @@ public class Bill_form extends javax.swing.JFrame {
                     g2d.drawString("*************************************",10,y);y+=yShift;
 
 
-
+                    System.out.println("fsdd23234343ffs");
 
 
 //            g2d.setFont(new Font("Monospaced",Font.BOLD,10));
@@ -173,9 +162,10 @@ public class Bill_form extends javax.swing.JFrame {
 
 
     public void startPrint() {//GEN-FIRST:event_jButton1ActionPerformed
-
+        System.out.println("fsdd1212323ffs");
         PrinterJob pj = PrinterJob.getPrinterJob();
         pj.setPrintable(new BillPrintable(),getPageFormat(pj));
+        System.out.println("fsdd345345435ffs");
         try {
             pj.print();
 

@@ -2,10 +2,10 @@ package sample;
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,17 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import sample.pojo.Product;
 
-
-public class InfoAboutClothes {
+public class InfoAboutChemical {
     private Stage dialogStage;
-    private Product product;
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField barcodeField;
@@ -37,29 +29,25 @@ public class InfoAboutClothes {
     private TextField priceField;
 
     @FXML
-    private TextField sexField;
+    private CheckBox environmentalField;
 
     @FXML
     private TextField nameField;
 
-    @FXML
-    private Button buttonOK;
-
-    @FXML
-    private TextField colorField;
     @FXML
     private TextField manufacturerField;
     @FXML
     private TextField categoryField;
 
     @FXML
-    private TextField sizeField;
+    private Button buttonOK;
+
+
 
     public void setProduct(Product_value product) {
+
         JSONObject features = new JSONObject();
-        String sex = new String();
-        String color = new String();
-        String size = new String();
+        String environmental = new String();
 
 
         try {
@@ -75,23 +63,12 @@ public class InfoAboutClothes {
         }
 
         try {
-            sex = features.getString("пол");
+            environmental = features.getString("экологичность");
         }
         catch (JSONException e){
             e.printStackTrace();
         }
-        try {
-            size = features.getString("размер");
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-        }
-        try {
-            color = features.getString("цвет");
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-        }
+
 
 
         nameField.setText(product.getName());
@@ -100,15 +77,16 @@ public class InfoAboutClothes {
         categoryField.setText(String.valueOf(product.get_category()));
         manufacturerField.setText(String.valueOf(product.get_manufacturer()));
 
-        sexField.setText(String.valueOf(sex));
-
-        colorField.setText(String.valueOf(color));
-        sizeField.setText(String.valueOf(size));
-
-        Image image = new Image(getClass().getResourceAsStream(product.getPhoto()));
+        environmentalField.setAllowIndeterminate(false);
+        if(environmental.equalsIgnoreCase("0")||environmental.equals("")) {
+            environmentalField.setSelected(false);
+        }
+        else {
+            environmentalField.setSelected(true);
+        }
+        Image image = new Image(getClass().getResource(product.getPhoto()).toExternalForm());
 
         imgSet.setImage(image);
-
     }
 
     public void setDialogStage(Stage dialogStage) {
