@@ -19,9 +19,9 @@
             </DropShadow>
          </effect>
          <children>
-            <Text fill="#1e1c1c" layoutX="160.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="155.13348388671875" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="162.86651611328125">
+            <Text fill="#575151" layoutX="91.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your password and barcode" textAlignment="CENTER" wrappingWidth="297.13348388671875" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="89.86651611328125">
                <font>
-                  <Font size="24.0" />
+                  <Font size="21.0" />
                </font>
             </Text>
             <TextField fx:id="adminCode" layoutX="99.0" layoutY="73.0" prefHeight="31.0" prefWidth="281.0" promptText="Barcode Admin" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="98.0">
@@ -47,7 +47,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField layoutX="99.0" layoutY="127.0" prefHeight="31.0" prefWidth="281.0" promptText="Password Admin" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="98.0">
+            <PasswordField fx:id="passwordCode" layoutX="99.0" layoutY="127.0" prefHeight="31.0" prefWidth="281.0" promptText="Password Admin" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="98.0">
                <effect>
                   <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
                      <input>
@@ -107,6 +107,27 @@
                   <Font size="21.0" />
                </font>
             </Button>
+            <AnchorPane fx:id="wrongPane" layoutX="132.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="215.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" visible="false" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="131.0">
+               <children>
+                  <Text fill="#d30000" layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong barcode or password" textAlignment="CENTER" wrappingWidth="176.170166015625">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="12.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@cancel-mark.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow color="#c3cbdbe2" offsetX="6.0" offsetY="6.0">
+                     <input>
+                        <DropShadow color="WHITE" offsetX="-6.0" offsetY="-6.0" />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <ImageView blendMode="OVERLAY" fitHeight="572.0" fitWidth="727.0" layoutX="710.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="710.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="141.0">

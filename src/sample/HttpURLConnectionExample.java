@@ -16,16 +16,14 @@ import java.net.URL;
 public class HttpURLConnectionExample {
 
     private static final String USER_AGENT = "Mozilla/5.0";
+    public static final String POST_URL_ADMIN = "http://cc2db5df.ngrok.io/entering";
+    private static final String POST_URL_BARCODE = " http://cc2db5df.ngrok.io/barcode";
+    public static final String POST_URL_INFO = " http://cc2db5df.ngrok.io/info";
+    public static final String POST_URL_ALL = " http://cc2db5df.ngrok.io/barcodeall";
 
-    private static final String GET_URL = "https://localhost:3000/get-user";
+     private static final String POST_PARAMS_DEMO = "barcode=644832819197";
 
-    private static final String POST_URL_DEMO = " http://5fdd894c.ngrok.io/barcode";
-    private static final String POST_URL_ALL = " http://5fdd894c.ngrok.io/barcodeall";
-    //private static final String POST_URL_LOGIN = "http://25c2c2ef.ngrok.io/login";
-    //private static final String POST_PARAMS = "email=a.miron@gmail.com&&password=1";
-    private static final String POST_PARAMS_DEMO = "barcode=644832819197";
-
-
+/*
 
     private static void sendGET() throws IOException {
         URL obj = new URL(GET_URL);
@@ -52,7 +50,7 @@ public class HttpURLConnectionExample {
         }
 
     }
-
+*/
 
     public static JSONObject sendPOST(String link , String params) throws IOException, JSONException {
         URL obj = new URL(link);
