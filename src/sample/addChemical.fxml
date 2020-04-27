@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="490.0" prefWidth="355.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddFood">
+<AnchorPane prefHeight="490.0" prefWidth="355.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddChemical">
    <children>
-      <Label layoutX="131.0" layoutY="14.0" text="Add food" textFill="#575151">
+      <Label layoutX="108.0" layoutY="14.0" text="Add chemical" textFill="#575151">
          <font>
             <Font size="24.0" />
          </font>
@@ -33,7 +33,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="18.0" prefWidth="75.0" text="Perishable" textFill="#575151" GridPane.rowIndex="5">
+            <Label prefHeight="18.0" prefWidth="89.0" text="Environmental" textFill="#575151" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
@@ -168,7 +168,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <CheckBox fx:id="perishableField" focusTraversable="false" mnemonicParsing="false" stylesheets="@stylesheet.css" text="is perishable" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <CheckBox fx:id="environmentalField" focusTraversable="false" mnemonicParsing="false" selected="true" stylesheets="@stylesheet.css" text="is eco-friendly" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="100.0" />
