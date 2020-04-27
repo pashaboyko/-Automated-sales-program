@@ -7,10 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="436.0" prefWidth="841.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.InfoAboutClothes">
+<AnchorPane prefHeight="502.0" prefWidth="841.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.InfoAboutClothes">
     <children>
         <HBox layoutX="197.1875" layoutY="241.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <AnchorPane layoutX="32.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="452.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="41.0">
+      <AnchorPane layoutX="32.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="452.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="41.0">
          <effect>
             <DropShadow color="#c3cbdbe2" offsetX="6.0" offsetY="6.0">
                <input>
@@ -19,7 +19,7 @@
             </DropShadow>
          </effect>
          <children>
-            <GridPane alignment="TOP_CENTER" layoutX="27.0" layoutY="22.0" prefHeight="245.0" prefWidth="381.0">
+            <GridPane alignment="TOP_CENTER" layoutX="27.0" layoutY="22.0" prefHeight="327.0" prefWidth="381.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="120.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
@@ -40,7 +40,6 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nameField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" />
                   <Label prefHeight="17.0" prefWidth="71.0" text="Barcode" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
@@ -66,12 +65,6 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="barcodeField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="priceField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="sizeField" alignment="TOP_CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="colorField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="sexField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="manufacturerField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Manufacturer" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
@@ -82,12 +75,203 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="categoryField" alignment="TOP_CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="categoryField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Category" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="manufacturerField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Manufacturer" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="sexField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Sex" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="colorField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Color" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="sizeField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Size" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="sizeField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Price" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="barcodeField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Barcode" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="nameField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Name" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1">
+                     <effect>
+                        <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                           <input>
+                              <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                                 <input>
+                                    <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                       <input>
+                                          <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                             <input>
+                                                <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                             </input>
+                                          </InnerShadow>
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </DropShadow>
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
               </children>
           </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="534.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="281.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="528.0" AnchorPane.topAnchor="41.0">
+      <AnchorPane layoutX="534.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="281.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="528.0" AnchorPane.topAnchor="41.0">
          <effect>
             <DropShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0">
                <input>
@@ -96,7 +280,7 @@
             </DropShadow>
          </effect>
          <children>
-              <ImageView fx:id="imgSet" fitHeight="205.0" fitWidth="217.0" layoutX="31.0" layoutY="34.0" pickOnBounds="true" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="34.0">
+              <ImageView fx:id="imgSet" fitHeight="205.0" fitWidth="217.0" layoutX="33.0" layoutY="98.0" pickOnBounds="true" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="66.0">
                   <image>
                       <Image url="@Apply/0.png" />
                   </image>
