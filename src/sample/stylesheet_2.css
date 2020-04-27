@@ -1,0 +1,10 @@
+.text-field {
+    -fx-background-color: #EBECF0;
+
+
+
+}
+
+.text-field .border {
+    -fx-border-color: #f00;
+}
