@@ -122,10 +122,7 @@ public class Controller {
 
             try {
                 String params = String.format("barcode=%s", BarcodeText.getText());
-
-                System.out.println(
-                HttpURLConnectionExample.sendPOST(POST_URL_DEMO, params));
-                Product_value product = new Product_value(HttpURLConnectionExample.sendPOST(POST_URL_DEMO, params));
+                Product_value product = new Product_value(HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_ALL, params));
                 System.out.println(product);
                 productsData.add(product);
                 Listfortovar.product.add(product);

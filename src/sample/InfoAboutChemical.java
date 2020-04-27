@@ -53,7 +53,7 @@ public class InfoAboutChemical {
         try {
             String params = String.format("barcode=%s", product.getBarcode());
 
-            features = HttpURLConnectionExample.sendPOST(Listfortovar.POST_URL_INFO, params);
+            features = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_INFO, params);
 
 
         } catch (IOException e) {

@@ -74,6 +74,7 @@ public class Start {
        startButton.setOnAction(event -> {
            startButton.getScene().getWindow().hide();
            Parent root = null;
+
            try {
                root = FXMLLoader.load(getClass().getResource("main.fxml"));
            } catch (IOException e) {

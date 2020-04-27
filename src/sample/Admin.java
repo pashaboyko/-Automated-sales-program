@@ -9,7 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Admin {
 
@@ -19,24 +22,63 @@ public class Admin {
     @FXML
     private URL location;
 
+
+
     @FXML
-    private Button addTovar;
+    private Button editTovar;
+
+
+    @FXML
+    private AnchorPane wrongPane;
 
     @FXML
     private Button deleteTovar;
     @FXML
     private Button backButton;
+    @FXML
+    private Button addTovar;
 
     @FXML
     private TextField adminCode;
+
+    @FXML
+    private TextField passwordCode;
 
 
 
     @FXML
     void initialize() {
-String f;
+        String f;
+
+
+        adminCode.setOnAction(event -> {
+            boolean a = checkAdmin(adminCode.getText() , passwordCode.getText());
+            if(a) {
+                addTovar.getScene().getWindow().hide();
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("typeOfTovar.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Stage primaryStage_2 = new Stage();
+                primaryStage_2.setTitle("Add product");
+
+                primaryStage_2.setScene(new Scene(root));
+
+                primaryStage_2.show();
+            }
+            System.out.println("fdswefwe");
+        });
+
+
+
+
+
         backButton.setOnAction(event -> {
             backButton.getScene().getWindow().hide();
+
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource("main.fxml"));
@@ -54,28 +96,27 @@ String f;
         });
 
         addTovar.setOnAction(event -> {
-Connectionn admin=new Connectionn();
-if(admin.adminCheck(adminCode.getText())) {
-    addTovar.getScene().getWindow().hide();
-    Parent root = null;
-    try {
-        root = FXMLLoader.load(getClass().getResource("typeOfTovar.fxml"));
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+            if(checkAdmin(adminCode.getText() , passwordCode.getText())) {
+            addTovar.getScene().getWindow().hide();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("typeOfTovar.fxml"));
+            } catch (IOException e) {
+            e.printStackTrace();
+            }
 
-    Stage primaryStage_2 = new Stage();
-    primaryStage_2.setTitle("Add product");
+            Stage primaryStage_2 = new Stage();
+            primaryStage_2.setTitle("Add product");
 
-    primaryStage_2.setScene(new Scene(root));
+            primaryStage_2.setScene(new Scene(root));
 
-    primaryStage_2.show();
-}
-});
+            primaryStage_2.show();
+            }
+
+        });
 
         deleteTovar.setOnAction(event -> {
-            Connectionn admin=new Connectionn();
-            if(admin.adminCheck(adminCode.getText())) {
+            if(checkAdmin(adminCode.getText() , passwordCode.getText())) {
                 deleteTovar.getScene().getWindow().hide();
                 Parent root = null;
                 try {
@@ -91,7 +132,7 @@ if(admin.adminCheck(adminCode.getText())) {
 
                 primaryStage_2.show();
             }
-            });
+        });
 
 
 
@@ -101,4 +142,42 @@ if(admin.adminCheck(adminCode.getText())) {
 
 
     }
+
+
+    private boolean checkAdmin(String barcode , String password) {
+        JSONObject respond = new JSONObject();
+        String status = new String();
+        boolean a = true;
+
+        try {
+            String params = String.format("barcode=%s&&password=%s", barcode, password);
+
+            respond = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_ADMIN, params);
+            status = respond.getString("status");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            wrongPane.setVisible(true);
+            return false;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            wrongPane.setVisible(true);
+            return false;
+        }
+        finally {
+            if (status.equalsIgnoreCase("200")) return true;
+
+            else{
+                wrongPane.setVisible(true);
+                return false;
+            }
+
+        }
+
+
+
+    }
+
+
 }
