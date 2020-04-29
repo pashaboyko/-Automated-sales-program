@@ -22,6 +22,9 @@ public class    TypeOfTovar {
     private Button techButton;
 
     @FXML
+    private Button chemiclButton;
+
+    @FXML
     private Button foodButton;
 
     @FXML
@@ -72,7 +75,24 @@ public class    TypeOfTovar {
             }
 
             Stage primaryStage_2 = new Stage();
-            primaryStage_2.setTitle("Addd Tech");
+            primaryStage_2.setTitle("Add Tech");
+            primaryStage_2.setScene(new Scene(root));
+
+            primaryStage_2.show();
+        });
+
+
+        chemiclButton.setOnAction(event -> {
+            chemiclButton.getScene().getWindow().hide();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("addChemical.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Stage primaryStage_2 = new Stage();
+            primaryStage_2.setTitle("Add Chemical");
             primaryStage_2.setScene(new Scene(root));
 
             primaryStage_2.show();

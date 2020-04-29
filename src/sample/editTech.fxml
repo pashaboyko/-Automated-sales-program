@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="604.0" prefWidth="355.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddTech">
+<AnchorPane prefHeight="604.0" prefWidth="355.0" style="-fx-background-color: #EBECF0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditTech">
    <children>
-      <Label layoutX="131.0" layoutY="14.0" text="Add tech" textFill="#575151">
+      <Label layoutX="131.0" layoutY="14.0" text="Edit tech" textFill="#575151">
          <font>
             <Font size="24.0" />
          </font>
@@ -57,7 +57,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="barcodeField" prefHeight="31.0" prefWidth="281.0" promptText="Barcode" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="barcodeField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Barcode" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <effect>
                   <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
                      <input>
@@ -235,7 +235,7 @@
             <Font size="21.0" />
          </font>
       </Button>
-      <Button fx:id="addButton" layoutX="29.0" layoutY="453.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="129.0" style="-fx-background-color: #cc33ff; -fx-background-radius: 8em;" text="Add" textFill="WHITE" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="453.0">
+      <Button fx:id="addButton" layoutX="29.0" layoutY="453.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="129.0" style="-fx-background-color: #cc33ff; -fx-background-radius: 8em;" text="Edit" textFill="WHITE" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="453.0">
          <effect>
             <DropShadow color="#d9c3d7eb" offsetX="6.0" offsetY="6.0">
                <input>

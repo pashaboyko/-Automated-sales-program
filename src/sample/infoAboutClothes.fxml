@@ -195,7 +195,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="sizeField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Price" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="priceField" editable="false" prefHeight="31.0" prefWidth="281.0" promptText="Price" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
                            <input>

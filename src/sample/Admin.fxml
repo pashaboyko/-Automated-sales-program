@@ -137,8 +137,15 @@
       </ImageView>
       <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="53.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="35.0">
          <image>
-            <Image url="@900.png" />
+            <Image url="@left.png" />
          </image>
+         <effect>
+            <DropShadow color="#c3cad9e4" offsetX="6.0" offsetY="6.0">
+               <input>
+                  <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0" />
+               </input>
+            </DropShadow>
+         </effect>
       </ImageView>
       <Button fx:id="backButton" layoutX="-4.0" layoutY="-2.0" mnemonicParsing="false" opacity="0.0" prefHeight="196.0" prefWidth="470.0" text="Button" />
    </children>

@@ -3,10 +3,10 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,13 +15,17 @@ import sample.pojo.Manufactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static sample.HttpURLConnectionExample.*;
 
-public class AddTech {
-
+public class EditFood {
+    private Stage dialogStage;
 
     @FXML
     private ResourceBundle resources;
@@ -36,17 +40,17 @@ public class AddTech {
     private TextField priceField;
 
 
-
     @FXML
     private TextField nameField;
 
     @FXML
-    private Button canceButton;
-    @FXML
     private Button addButton;
 
     @FXML
-    private CheckBox guaranteeField;
+    private Button canceButton;
+
+    @FXML
+    private CheckBox perishableField;
 
 
     @FXML
@@ -67,6 +71,11 @@ public class AddTech {
     @FXML
     private DatePicker datePicker;
 
+    private ObservableList<Features> fList = FXCollections.observableArrayList();
+    private ObservableList<Manufactory> mList = FXCollections.observableArrayList();
+
+
+
     @FXML
     void initialize() {
 
@@ -80,11 +89,11 @@ public class AddTech {
 
 
         JSONObject features = new JSONObject();
-        ObservableList<Features> fList = FXCollections.observableArrayList();
+
 
 
         try {
-            String params = "category=техника";
+            String params = "category=продукты";
 
             features = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_SUBCATEGORY, params);
 
@@ -107,11 +116,11 @@ public class AddTech {
 
 
         JSONObject manufactory = new JSONObject();
-        ObservableList<Manufactory> mList = FXCollections.observableArrayList();
+
 
 
         try {
-            String params = "category=техника";
+            String params = "category=продукты";
 
             manufactory = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_MANUFACTORY, params);
 
@@ -139,7 +148,10 @@ public class AddTech {
 
 
         addButton.setOnAction(event -> {
-            if (priceField.getText().isEmpty()  || nameField.getText().isEmpty() || manufactureBox.getItems() == null || barcodeField.getText().isEmpty() || quantilyField.getText().isEmpty()|| datePicker.getValue() == null  || categoryBox.getItems()  == null ) {
+            System.out.println(categoryBox.getItems().isEmpty());
+
+            System.out.println();
+            if (priceField.getText().isEmpty()  || nameField.getText().isEmpty() || manufactureBox.getItems() == null || barcodeField.getText().isEmpty() || quantilyField.getText().isEmpty()|| datePicker.getValue() == null || categoryBox.getItems() == null) {
                 wrongText.setText("Please fill all fields");
                 wrongPane.setVisible(true);
             }
@@ -147,9 +159,9 @@ public class AddTech {
                 try {
                     Double d1 = new Double(priceField.getText());
                     try {
-                        int guarantee = 0;
-                        if(guaranteeField.isSelected()){
-                            guarantee = 1;
+                        int quantily = 0;
+                        if(perishableField.isSelected()){
+                            quantily = 1;
                         }
                         Integer d2 = new Integer(quantilyField.getText());
 
@@ -161,7 +173,7 @@ public class AddTech {
 
                         HttpURLConnectionExample.sendPOST(POST_URL_ADD, params);
 
-                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",guarantee, 5, barcodeField.getText());
+                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",quantily, 1, barcodeField.getText());
 
                         HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
 
@@ -189,9 +201,75 @@ public class AddTech {
             }
         });
         canceButton.setOnAction(event -> {
-            canceButton.getScene().getWindow().hide();
+            dialogStage.close();
 
         });
     }
+
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
+    public void setProduct(Product_value product) {
+        JSONObject features = new JSONObject();
+        String perishable = new String();
+
+
+        try {
+            String params = String.format("barcode=%s", product.getBarcode());
+
+            features = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_INFO, params);
+            perishable = features.getString("быстропортящийся");
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        nameField.setText(product.getName());
+        barcodeField.setText(String.valueOf(product.getBarcode()));
+        priceField.setText(String.valueOf(product.getPrice()));
+
+        for (int i = 0 ; i<fList.size(); i++){
+            if(fList.get(i).getName().equalsIgnoreCase(product.get_subcategory())) categoryBox.setValue(fList.get(i));
+        }
+
+        for (int i = 0 ; i<mList.size(); i++){
+            if(mList.get(i).getName().equalsIgnoreCase(product.get_manufacturer())) manufactureBox.setValue(mList.get(i));
+        }
+
+
+        perishableField.setAllowIndeterminate(false);
+        if(perishable.equalsIgnoreCase("0")||perishable.equals("")) {
+            perishableField.setSelected(false);
+        }
+        else {
+            perishableField.setSelected(true);
+        }
+
+        quantilyField.setText(String.valueOf(product.getQuantity()));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+
+            Date date = formatter.parse(product.getDelivery());
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            datePicker.setValue(localDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
 }
 

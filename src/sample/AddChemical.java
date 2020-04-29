@@ -1,22 +1,27 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import sample.pojo.Tech;
+
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import sample.pojo.Features;
+import sample.pojo.Manufactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+
 import java.util.ResourceBundle;
 
-public class AddChemical {
+import static sample.HttpURLConnectionExample.*;
 
-    public int c=5;
+public class AddChemical {
 
     @FXML
     private ResourceBundle resources;
@@ -31,9 +36,14 @@ public class AddChemical {
     private TextField priceField;
 
 
-
     @FXML
     private TextField nameField;
+
+    @FXML
+    private TextField quantilyField;
+
+    @FXML
+    private DatePicker datePicker;
 
     @FXML
     private Button canceButton;
@@ -41,76 +51,146 @@ public class AddChemical {
     private Button addButton;
 
     @FXML
-    private TextField colorField;
+    private CheckBox environmentalField;
+
 
     @FXML
-    private TextField sizeField;
+    private ChoiceBox<Features> categoryBox;
+
     @FXML
-    private Label idFail;
+    private ChoiceBox<Manufactory> manufactureBox;
+
+    @FXML
+    private Label wrongText;
+
+    @FXML
+    private AnchorPane wrongPane;
 
 
     @FXML
     void initialize() {
+
+        LocalDate maxDate = LocalDate.now();
+        datePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(maxDate));
+                    }});
+
+
+        JSONObject features = new JSONObject();
+        ObservableList<Features> fList = FXCollections.observableArrayList();
+
+
+        try {
+            String params = "category=бытовая_химия";
+
+            features = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_SUBCATEGORY, params);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray key = features.names ();
+        for (int i = 0; i < key.length (); ++i) {
+            String keys = null;
+            try {
+                keys = key.getString(i);
+                fList.add( new Features(Integer.parseInt(keys), features.getString(keys)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        JSONObject manufactory = new JSONObject();
+        ObservableList<Manufactory> mList = FXCollections.observableArrayList();
+
+
+        try {
+            String params = "category=бытовая_химия";
+
+            manufactory = HttpURLConnectionExample.sendPOST(POST_URL_MANUFACTORY, params);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        key = manufactory.names ();
+        for (int i = 0; i < key.length (); ++i) {
+            String keys = null;
+            try {
+                keys = key.getString(i);
+                mList.add( new Manufactory(Integer.parseInt(keys), manufactory.getString(keys)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        categoryBox.setItems(fList);
+        manufactureBox.setItems(mList);
+
+
+
         addButton.setOnAction(event -> {
-            Connectionn b=new Connectionn();
-            if (priceField.getText().isEmpty() || sizeField.getText().isEmpty() || nameField.getText().isEmpty() || colorField.getText().isEmpty() || barcodeField.getText().isEmpty()) {
-                idFail.setText("Please fill in all required fields");
+            if (priceField.getText().isEmpty()  || nameField.getText().isEmpty() || manufactureBox.getItems()  == null || barcodeField.getText().isEmpty() || quantilyField.getText().isEmpty()|| datePicker.getValue() == null  || categoryBox.getItems() == null ) {
+                wrongText.setText("Please fill all fields");
+                wrongPane.setVisible(true);
             }
             else{
                 try {
                     Double d1 = new Double(priceField.getText());
                     try {
-                        if(b.barcodeCheck(barcodeField.getText())) {
-                            idFail.setText("Please new barcode");
+                        int environmental = 0;
+                        if(environmentalField.isSelected()){
+                            environmental = 1;
                         }
-                        else{
+                        Integer d2 = new Integer(quantilyField.getText());
 
-                        Integer d2 = new Integer(sizeField.getText());
+                        String params = String.format("barcode=%s", barcodeField.getText());
 
-                        Tech a=new Tech(c, nameField.getText(),barcodeField.getText(),d1,"0.jpg",d2,colorField.getText());
-                        b.addTech(a);
-                        c++;
+                        HttpURLConnectionExample.sendPOST(POST_URL_BARCODE_BOOL, params);
+
+                        params=String.format("name=%s&&barcode=%s&&price=%s&&id_subcategory=%s&&id_manufacturer=%s&&delivery_date=%s&&quantity=%s",nameField.getText(), barcodeField.getText(),priceField.getText(),categoryBox.getValue().getId(),manufactureBox.getValue().getId(),datePicker.getValue(),quantilyField.getText());
+
+                        HttpURLConnectionExample.sendPOST(POST_URL_ADD, params);
+
+                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",environmental, 6, barcodeField.getText());
+
+                        HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
+
                         addButton.getScene().getWindow().hide();
-                        Parent root = null;
-                        try {
-                            root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        Stage primaryStage_2 = new Stage();
-                        primaryStage_2.setTitle("Администратор");
-                        primaryStage_2.setScene(new Scene(root));
-                        primaryStage_2.setMaximized(true);
-                        primaryStage_2.setResizable(false);
-                        primaryStage_2.show();
 
-                    } }catch (NumberFormatException e) {
-                        sizeField.clear();
-                        idFail.setText("Warranty is number!!");
+
+                     }catch (NumberFormatException e) {
+                        quantilyField.clear();
+                        wrongText.setText("Quantily is number!!");
+                        wrongPane.setVisible(true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        barcodeField.clear();
+                        wrongText.setText("BD has this barcode!!");
+                        wrongPane.setVisible(true);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 } catch (NumberFormatException e) {
                     priceField.clear();
-                    idFail.setText("Price is number!!");
+                    wrongText.setText("Price is number!!");
+                    wrongPane.setVisible(true);
                 }
 
             }
         });
         canceButton.setOnAction(event -> {
             canceButton.getScene().getWindow().hide();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            Stage primaryStage_2 = new Stage();
-            primaryStage_2.setTitle("Администратор");
-
-            primaryStage_2.setScene(new Scene(root));
-            primaryStage_2.setMaximized(true);
-            primaryStage_2.setResizable(false);
-            primaryStage_2.show();
         });
     }
 }
