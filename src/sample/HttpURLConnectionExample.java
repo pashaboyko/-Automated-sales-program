@@ -14,19 +14,25 @@ import java.net.URL;
 
 
 public class HttpURLConnectionExample {
-
     private static final String USER_AGENT = "Mozilla/5.0";
     public static final String POST_URL_ADMIN = "http://cc2db5df.ngrok.io/entering";
     private static final String POST_URL_BARCODE = " http://cc2db5df.ngrok.io/barcode";
+    public static final String GET_URL_COUNT_ROW = " http://cc2db5df.ngrok.io/rowcount";
     public static final String POST_URL_INFO = " http://cc2db5df.ngrok.io/info";
+    public static final String POST_URL_List_Product = " http://cc2db5df.ngrok.io/listProductlimit";
+    public static final String POST_URL_BARCODE_BOOL = " http://cc2db5df.ngrok.io/checkbarcode";
+    public static final String POST_URL_ADD = " http://cc2db5df.ngrok.io/add";
+    public static final String POST_URL_ADD_FEATURES = " http://cc2db5df.ngrok.io/add_features";
     public static final String POST_URL_ALL = " http://cc2db5df.ngrok.io/barcodeall";
+    public static final String POST_URL_SUBCATEGORY = " http://cc2db5df.ngrok.io/category";
+    public static final String POST_URL_MANUFACTORY = " http://cc2db5df.ngrok.io/manufacturer";
 
      private static final String POST_PARAMS_DEMO = "barcode=644832819197";
 
-/*
 
-    private static void sendGET() throws IOException {
-        URL obj = new URL(GET_URL);
+
+    public static JSONObject  sendGET(String link) throws IOException, JSONException {
+        URL obj = new URL(link);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
@@ -43,14 +49,19 @@ public class HttpURLConnectionExample {
             }
             in.close();
 
-            // print result
-            System.out.println(response.toString());
+            in.close();
+            //System.out.println(response.toString());
+            JSONObject myResponse = new JSONObject(response.toString());
+
+
+            return myResponse;
         } else {
             System.out.println("GET request not worked");
+            throw new IOException("Not ok");
         }
 
     }
-*/
+
 
     public static JSONObject sendPOST(String link , String params) throws IOException, JSONException {
         URL obj = new URL(link);

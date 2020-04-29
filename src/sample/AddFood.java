@@ -1,28 +1,23 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import sample.pojo.Food;
-import sample.pojo.Tech;
-
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import sample.pojo.Features;
+import sample.pojo.Manufactory;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 
+import static sample.HttpURLConnectionExample.*;
+
 public class AddFood {
-    public int countId2=5;
 
     @FXML
     private ResourceBundle resources;
@@ -45,85 +40,159 @@ public class AddFood {
 
     @FXML
     private Button canceButton;
-    @FXML
-    private DatePicker dateId;
 
     @FXML
-    private Label idFail;
+    private CheckBox perishableField;
+
+
+    @FXML
+    private ChoiceBox<Features> categoryBox;
+
+    @FXML
+    private ChoiceBox<Manufactory> manufactureBox;
+
+    @FXML
+    private Label wrongText;
+
+    @FXML
+    private AnchorPane wrongPane;
+
+    @FXML
+    private TextField quantilyField;
+
+    @FXML
+    private DatePicker datePicker;
+
 
 
     @FXML
     void initialize() {
-        addButton.setOnAction(event -> {
-            if (priceField.getText().isEmpty() || nameField.getText().isEmpty() ||  barcodeField.getText().isEmpty()||priceField.getText().isEmpty()) {
-                idFail.setText("Please fill in all required fields");
 
-            }
-            else {
-                try {
-                    Double d1 = new Double(priceField.getText());
-                    Connectionn b= new Connectionn();
-                    if(b.barcodeCheck(barcodeField.getText())){
-                        idFail.setText("Please new barcode");
-                        barcodeField.clear();
-                    }
-                    else {
-                    LocalDate localDate = dateId.getValue();
-                    localDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
-                    //Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-                    Date date = new Date();
+        LocalDate maxDate = LocalDate.now();
+        datePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(maxDate));
+                    }});
 
 
-                    int year  = localDate.getYear();
-                    int month = localDate.getMonthValue();
-                    int day   = localDate.getDayOfMonth();
+        JSONObject features = new JSONObject();
+        ObservableList<Features> fList = FXCollections.observableArrayList();
 
 
+        try {
+            String params = "category=продукты";
 
-                    System.out.println(dateId.getDayCellFactory());
+            features = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_SUBCATEGORY, params);
 
-                    Food a = new Food(countId2, nameField.getText(), barcodeField.getText(), d1, "0.jpg", day, month, year);
-                    b.addFood(a);
-                    addButton.getScene().getWindow().hide();
-                    countId2++;
-                    Parent root = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-                    try {
-                        root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Stage primaryStage_2 = new Stage();
-                    primaryStage_2.setTitle("Администратор");
-                    primaryStage_2.setScene(new Scene(root));
-                    primaryStage_2.setMaximized(true);
-                    primaryStage_2.setResizable(false);
-                    primaryStage_2.show();
-
-                } }catch (NumberFormatException e) {
-                    priceField.clear();
-                    idFail.setText("Price is number!!");
-                }
-            }
-        });
-
-        canceButton.setOnAction(event -> {
-            canceButton.getScene().getWindow().hide();
-            Parent root = null;
+        JSONArray key = features.names ();
+        for (int i = 0; i < key.length (); ++i) {
+            String keys = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-            } catch (IOException e) {
+                keys = key.getString(i);
+                fList.add( new Features(Integer.parseInt(keys), features.getString(keys)));
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
 
-            Stage primaryStage_2 = new Stage();
-            primaryStage_2.setTitle("Администратор");
 
-            primaryStage_2.setScene(new Scene(root));
-            primaryStage_2.setMaximized(true);
-            primaryStage_2.setResizable(false);
-            primaryStage_2.show();
+        JSONObject manufactory = new JSONObject();
+        ObservableList<Manufactory> mList = FXCollections.observableArrayList();
+
+
+        try {
+            String params = "category=продукты";
+
+            manufactory = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_MANUFACTORY, params);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        key = manufactory.names ();
+        for (int i = 0; i < key.length (); ++i) {
+            String keys = null;
+            try {
+                keys = key.getString(i);
+                mList.add( new Manufactory(Integer.parseInt(keys), manufactory.getString(keys)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        categoryBox.setItems(fList);
+        manufactureBox.setItems(mList);
+
+
+
+        addButton.setOnAction(event -> {
+            System.out.println(categoryBox.getItems().isEmpty());
+
+            System.out.println();
+            if (priceField.getText().isEmpty()  || nameField.getText().isEmpty() || manufactureBox.getItems() == null || barcodeField.getText().isEmpty() || quantilyField.getText().isEmpty()|| datePicker.getValue() == null || categoryBox.getItems() == null) {
+                wrongText.setText("Please fill all fields");
+                wrongPane.setVisible(true);
+            }
+            else{
+                try {
+                    Double d1 = new Double(priceField.getText());
+                    try {
+                        int quantily = 0;
+                        if(perishableField.isSelected()){
+                            quantily = 1;
+                        }
+                        Integer d2 = new Integer(quantilyField.getText());
+
+                        String params = String.format("barcode=%s", barcodeField.getText());
+
+                        HttpURLConnectionExample.sendPOST(POST_URL_BARCODE_BOOL, params);
+
+                        params=String.format("name=%s&&barcode=%s&&price=%s&&id_subcategory=%s&&id_manufacturer=%s&&delivery_date=%s&&quantity=%s",nameField.getText(), barcodeField.getText(),priceField.getText(),categoryBox.getValue().getId(),manufactureBox.getValue().getId(),datePicker.getValue(),quantilyField.getText());
+
+                        HttpURLConnectionExample.sendPOST(POST_URL_ADD, params);
+
+                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",quantily, 1, barcodeField.getText());
+
+                        HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
+
+                        addButton.getScene().getWindow().hide();
+
+
+                    }catch (NumberFormatException e) {
+                        quantilyField.clear();
+                        wrongText.setText("Quantily is number!!");
+                        wrongPane.setVisible(true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        barcodeField.clear();
+                        wrongText.setText("BD has this barcode!!");
+                        wrongPane.setVisible(true);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (NumberFormatException e) {
+                    priceField.clear();
+                    wrongText.setText("Price is number!!");
+                    wrongPane.setVisible(true);
+                }
+
+            }
         });
+        canceButton.setOnAction(event -> {
+            canceButton.getScene().getWindow().hide();
 
+        });
     }
 }
+

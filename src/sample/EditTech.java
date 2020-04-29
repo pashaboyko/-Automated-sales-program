@@ -3,10 +3,10 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,12 +15,17 @@ import sample.pojo.Manufactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static sample.HttpURLConnectionExample.*;
 
-public class AddTech {
+public class EditTech {
+    private Stage dialogStage;
 
 
     @FXML
@@ -67,6 +72,9 @@ public class AddTech {
     @FXML
     private DatePicker datePicker;
 
+    private ObservableList<Features> fList = FXCollections.observableArrayList();
+    private ObservableList<Manufactory> mList = FXCollections.observableArrayList();
+
     @FXML
     void initialize() {
 
@@ -80,7 +88,7 @@ public class AddTech {
 
 
         JSONObject features = new JSONObject();
-        ObservableList<Features> fList = FXCollections.observableArrayList();
+
 
 
         try {
@@ -107,7 +115,6 @@ public class AddTech {
 
 
         JSONObject manufactory = new JSONObject();
-        ObservableList<Manufactory> mList = FXCollections.observableArrayList();
 
 
         try {
@@ -135,6 +142,9 @@ public class AddTech {
 
         categoryBox.setItems(fList);
         manufactureBox.setItems(mList);
+
+
+
 
 
 
@@ -189,9 +199,80 @@ public class AddTech {
             }
         });
         canceButton.setOnAction(event -> {
-            canceButton.getScene().getWindow().hide();
+            dialogStage.close();
 
         });
     }
+
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
+    public void setProduct(Product_value product) {
+        JSONObject features = new JSONObject();
+        String guarantee = new String();
+
+
+        try {
+            String params = String.format("barcode=%s", product.getBarcode());
+
+            features = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_INFO, params);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            guarantee = features.getString("гарантия");
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+
+
+        nameField.setText(product.getName());
+        barcodeField.setText(String.valueOf(product.getBarcode()));
+        priceField.setText(String.valueOf(product.getPrice()));
+        for (int i = 0 ; i<fList.size(); i++){
+            if(fList.get(i).getName().equalsIgnoreCase(product.get_subcategory())) categoryBox.setValue(fList.get(i));
+        }
+
+        for (int i = 0 ; i<mList.size(); i++){
+            if(mList.get(i).getName().equalsIgnoreCase(product.get_manufacturer())) manufactureBox.setValue(mList.get(i));
+        }
+
+        guaranteeField.setAllowIndeterminate(false);
+        if(guarantee.equalsIgnoreCase("0")||guarantee.equals("")) {
+            guaranteeField.setSelected(false);
+        }
+        else {
+            guaranteeField.setSelected(true);
+        }
+
+        quantilyField.setText(String.valueOf(product.getQuantity()));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+
+            Date date = formatter.parse(product.getDelivery());
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            datePicker.setValue(localDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+    }
+
 }
 

@@ -97,7 +97,7 @@ public class Admin {
 
         addTovar.setOnAction(event -> {
             if(checkAdmin(adminCode.getText() , passwordCode.getText())) {
-            addTovar.getScene().getWindow().hide();
+                wrongPane.setVisible(false);
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource("typeOfTovar.fxml"));
@@ -115,9 +115,30 @@ public class Admin {
 
         });
 
-        deleteTovar.setOnAction(event -> {
+        editTovar.setOnAction(event -> {
             if(checkAdmin(adminCode.getText() , passwordCode.getText())) {
-                deleteTovar.getScene().getWindow().hide();
+                wrongPane.setVisible(false);
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("editTovar.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Stage primaryStage_2 = new Stage();
+                primaryStage_2.setTitle("Edit product");
+
+                primaryStage_2.setScene(new Scene(root));
+
+                primaryStage_2.show();
+            }
+
+        });
+
+
+        deleteTovar.setOnAction(event -> {
+            wrongPane.setVisible(false);
+            if(checkAdmin(adminCode.getText() , passwordCode.getText())) {
                 Parent root = null;
                 try {
                     root = FXMLLoader.load(getClass().getResource("deleteTovar.fxml"));

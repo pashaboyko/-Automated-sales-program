@@ -59,12 +59,11 @@
                   </ImageView>
                </graphic>
             </Button>
-          <Label layoutX="187.0" layoutY="41.0" prefHeight="30.0" prefWidth="103.0" text="Barcode">
+          <Label layoutX="187.0" layoutY="41.0" prefHeight="30.0" prefWidth="103.0" text="Barcode" textFill="#575151">
             <font>
               <Font name="Verdana" size="24.0" />
             </font>
           </Label>
-            <TextField fx:id="BarcodeText" layoutX="82.0" layoutY="115.0" prefHeight="39.0" prefWidth="327.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="115.0" />
             <AnchorPane layoutX="113.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="69.0" prefWidth="255.0" style="-fx-background-color: #EBECF0; -fx-background-radius: 8px;" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="195.0">
                <effect>
                   <DropShadow color="#c3cbdbe2" offsetX="6.0" offsetY="6.0">
@@ -91,6 +90,30 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <TextField fx:id="BarcodeText" layoutX="72.0" layoutY="119.0" prefHeight="31.0" prefWidth="334.0" promptText="Barcode" style="-fx-background-radius: 8px;" stylesheets="@stylesheet_2.css">
+               <effect>
+                  <DropShadow color="#c3cad9db" offsetX="6.0" offsetY="6.0">
+                     <input>
+                        <DropShadow color="#ffffffe2" offsetX="-6.0" offsetY="-6.0">
+                           <input>
+                              <InnerShadow choke="1.0" color="#cd36ff00" height="5.0" radius="2.0" width="5.0">
+                                 <input>
+                                    <InnerShadow color="WHITE" offsetX="-6.0" offsetY="-6.0">
+                                       <input>
+                                          <InnerShadow color="#c3cbdbe3" offsetX="6.0" offsetY="6.0" />
+                                       </input>
+                                    </InnerShadow>
+                                 </input>
+                              </InnerShadow>
+                           </input>
+                        </DropShadow>
+                     </input>
+                  </DropShadow>
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
   </children>
