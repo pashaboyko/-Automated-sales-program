@@ -95,6 +95,7 @@ public class EditTovar {
         }
 
         tableUsers.setItems(productsData);
+
     }
 
 
@@ -250,10 +251,11 @@ public class EditTovar {
 
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
+                        listProductUpload();
                         return true;
                     } else{
                         if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
-                            loader.setLocation(getClass().getResource("editСhemical.fxml"));
+                            loader.setLocation(getClass().getResource("editChem.fxml"));
                             AnchorPane page = (AnchorPane) loader.load();
 
                             // Create the dialog Stage.
@@ -271,6 +273,7 @@ public class EditTovar {
 
                             // Show the dialog and wait until the user closes it
                             dialogStage.showAndWait();
+                            listProductUpload();
                             return true;
                         } else return false;
                     }

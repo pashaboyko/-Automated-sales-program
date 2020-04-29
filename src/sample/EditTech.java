@@ -75,6 +75,11 @@ public class EditTech {
     private ObservableList<Features> fList = FXCollections.observableArrayList();
     private ObservableList<Manufactory> mList = FXCollections.observableArrayList();
 
+    private int id_product ;
+    private int point;
+    private String photo;
+    private int category = 2;
+
     @FXML
     void initialize() {
 
@@ -163,17 +168,15 @@ public class EditTech {
                         }
                         Integer d2 = new Integer(quantilyField.getText());
 
-                        String params = String.format("barcode=%s", barcodeField.getText());
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_BARCODE_BOOL, params);
+                        String params=String.format("id_product=%s&&name=%s&&price=%s&&id_category=%s&&id_subcategory=%s&&id_manufacturer=%s&&photo=%s&&points=%s&&delivery_date=%s&&quantity=%s",id_product,nameField.getText(), priceField.getText(),category,categoryBox.getValue().getId(),manufactureBox.getValue().getId(),photo,point,datePicker.getValue(),quantilyField.getText());
 
-                        params=String.format("name=%s&&barcode=%s&&price=%s&&id_subcategory=%s&&id_manufacturer=%s&&delivery_date=%s&&quantity=%s",nameField.getText(), barcodeField.getText(),priceField.getText(),categoryBox.getValue().getId(),manufactureBox.getValue().getId(),datePicker.getValue(),quantilyField.getText());
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_ADD, params);
+                        HttpURLConnectionExample.sendPOST(POST_URL_EDIT, params);
 
-                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",guarantee, 5, barcodeField.getText());
+                        params=String.format("value=%s&&id_feature=%s&&id_product=%s",guarantee, 5, id_product);
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
+                        HttpURLConnectionExample.sendPOST(POST_URL_EDIT_FEATURE, params);
 
                         addButton.getScene().getWindow().hide();
 
@@ -210,6 +213,11 @@ public class EditTech {
     }
 
     public void setProduct(Product_value product) {
+
+        id_product = product.getId();
+        point = product.getPoints();
+        photo = product.getPhoto();
+
         JSONObject features = new JSONObject();
         String guarantee = new String();
 

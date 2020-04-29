@@ -77,6 +77,11 @@ public class EditClothes {
     private ObservableList<Features> fList = FXCollections.observableArrayList();
     private ObservableList<Manufactory> mList = FXCollections.observableArrayList();
 
+    private int id_product ;
+    private int point;
+    private String photo;
+    private int category = 1;
+
 
     @FXML
     void initialize() {
@@ -154,7 +159,7 @@ public class EditClothes {
 
 
         addButton.setOnAction(event -> {
-            if (priceField.getText().isEmpty()  || nameField.getText().isEmpty() || manufactureBox.getItems() == null || sexBox.getItems().isEmpty() ||sizeBox.getItems() == null |colorBox.getItems() == null || barcodeField.getText().isEmpty() || quantilyField.getText().isEmpty()|| datePicker.getValue() == null || categoryBox.getItems() == null) {
+            if (priceField.getText().isEmpty()  || nameField.getText().isEmpty() || manufactureBox.getItems() == null || sexBox.getItems().isEmpty() ||sizeBox.getItems() == null |colorBox.getItems() == null || quantilyField.getText().isEmpty()|| datePicker.getValue() == null || categoryBox.getItems() == null) {
                 wrongText.setText("Please fill all fields");
                 wrongPane.setVisible(true);
 
@@ -166,25 +171,21 @@ public class EditClothes {
 
                         Integer d2 = new Integer(quantilyField.getText());
 
-                        String params = String.format("barcode=%s", barcodeField.getText());
+                        String params=String.format("id_product=%s&&name=%s&&price=%s&&id_category=%s&&id_subcategory=%s&&id_manufacturer=%s&&photo=%s&&points=%s&&delivery_date=%s&&quantity=%s",id_product,nameField.getText(), priceField.getText(),category,categoryBox.getValue().getId(),manufactureBox.getValue().getId(),photo,point,datePicker.getValue(),quantilyField.getText());
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_BARCODE_BOOL, params);
 
-                        params=String.format("name=%s&&barcode=%s&&price=%s&&id_subcategory=%s&&id_manufacturer=%s&&delivery_date=%s&&quantity=%s",nameField.getText(), barcodeField.getText(),priceField.getText(),categoryBox.getValue().getId(),manufactureBox.getValue().getId(),datePicker.getValue(),quantilyField.getText());
+                        HttpURLConnectionExample.sendPOST(POST_URL_EDIT, params);
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_ADD, params);
+                        params=String.format("value=%s&&id_feature=%s&&id_product=%s",colorBox.getValue(), 3, id_product);
 
-                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",colorBox.getValue(), 3, barcodeField.getText());
+                        HttpURLConnectionExample.sendPOST(POST_URL_EDIT_FEATURE, params);
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
+                        params=String.format("value=%s&&id_feature=%s&&id_product=%s",sexBox.getValue(), 4, id_product);
 
-                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",sexBox.getValue(), 4, barcodeField.getText());
+                        HttpURLConnectionExample.sendPOST(POST_URL_EDIT_FEATURE, params);
 
-                        HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
+                        params=String.format("value=%s&&id_feature=%s&&id_product=%s",sizeBox.getValue(), 2, id_product);
 
-                        params=String.format("value=%s&&id_feature=%s&&barcode=%s",sizeBox.getValue(), 2, barcodeField.getText());
-
-                        HttpURLConnectionExample.sendPOST(POST_URL_ADD_FEATURES, params);
 
                         addButton.getScene().getWindow().hide();
 
@@ -196,7 +197,7 @@ public class EditClothes {
                     } catch (IOException e) {
                         e.printStackTrace();
                         barcodeField.clear();
-                        wrongText.setText("BD has this barcode!!");
+                        wrongText.setText("Error!!");
                         wrongPane.setVisible(true);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -220,6 +221,10 @@ public class EditClothes {
     }
 
     public void setProduct(Product_value product) {
+        id_product=product.getId();
+        point = product.getPoints();
+        photo = product.getPhoto();
+
         JSONObject features = new JSONObject();
         String sex = new String();
         String color = new String();
@@ -261,13 +266,6 @@ public class EditClothes {
         nameField.setText(product.getName());
         barcodeField.setText(String.valueOf(product.getBarcode()));
         priceField.setText(String.valueOf(product.getPrice()));
-        //categoryField.setText(String.valueOf(product.get_category()));
-        //manufacturerField.setText(String.valueOf(product.get_manufacturer()));
-
-        //sexField.setText(String.valueOf(sex));
-
-        //colorField.setText(String.valueOf(color));
-        //sizeField.setText(String.valueOf(size));
 
         for (int i = 0 ; i<fList.size(); i++){
             if(fList.get(i).getName().equalsIgnoreCase(product.get_subcategory())) categoryBox.setValue(fList.get(i));
