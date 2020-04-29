@@ -95,15 +95,7 @@ public class EditTovar {
         }
 
         tableUsers.setItems(productsData);
-
-
-
     }
-
-
-
-
-
 
 
     private int currentPage = 1;
