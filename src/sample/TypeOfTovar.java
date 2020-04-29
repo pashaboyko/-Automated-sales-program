@@ -37,7 +37,7 @@ public class    TypeOfTovar {
             clothesButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("addClothes.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/addClothes.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -53,7 +53,7 @@ public class    TypeOfTovar {
             foodButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("addFood.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/addFood.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,7 +69,7 @@ public class    TypeOfTovar {
             techButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("addTech.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/addTech.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,7 +86,7 @@ public class    TypeOfTovar {
             chemiclButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("addChemical.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/addChemical.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

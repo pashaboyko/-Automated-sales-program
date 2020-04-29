@@ -32,7 +32,7 @@ public class ChooseColor {
             idImage2.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("start.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/start.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -49,7 +49,7 @@ public class ChooseColor {
             idImage1.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("start1.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/start1.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

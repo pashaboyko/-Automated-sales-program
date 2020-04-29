@@ -56,7 +56,7 @@ public class Good1 {
             startButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("main1.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/main1.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

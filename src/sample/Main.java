@@ -14,7 +14,7 @@ public class Main extends Application {
 
 
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("start.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/start.fxml"));
         primaryStage.setTitle("ScanPay");
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);

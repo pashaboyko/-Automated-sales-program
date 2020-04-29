@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sample.pojo.Features;
+import sample.pojo.Category;
 import sample.pojo.Manufactory;
 
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class AddTech {
 
 
     @FXML
-    private ChoiceBox<Features> categoryBox;
+    private ChoiceBox<Category> categoryBox;
 
     @FXML
     private ChoiceBox<Manufactory> manufactureBox;
@@ -80,7 +80,7 @@ public class AddTech {
 
 
         JSONObject features = new JSONObject();
-        ObservableList<Features> fList = FXCollections.observableArrayList();
+        ObservableList<Category> fList = FXCollections.observableArrayList();
 
 
         try {
@@ -99,7 +99,7 @@ public class AddTech {
             String keys = null;
             try {
                 keys = key.getString(i);
-                fList.add( new Features(Integer.parseInt(keys), features.getString(keys)));
+                fList.add( new Category(Integer.parseInt(keys), features.getString(keys)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
