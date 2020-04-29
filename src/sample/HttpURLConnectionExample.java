@@ -19,6 +19,7 @@ public class HttpURLConnectionExample {
     private static final String POST_URL_BARCODE = " http://cc2db5df.ngrok.io/barcode";
     public static final String GET_URL_COUNT_ROW = " http://cc2db5df.ngrok.io/rowcount";
     public static final String POST_URL_INFO = " http://cc2db5df.ngrok.io/info";
+    public static final String POST_URL_DELETE = " http://cc2db5df.ngrok.io/delete";
     public static final String POST_URL_List_Product = " http://cc2db5df.ngrok.io/listProductlimit";
     public static final String POST_URL_BARCODE_BOOL = " http://cc2db5df.ngrok.io/checkbarcode";
     public static final String POST_URL_ADD = " http://cc2db5df.ngrok.io/add";

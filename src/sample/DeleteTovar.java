@@ -14,6 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import sample.pojo.Clothes;
 import sample.pojo.Food;
 import sample.pojo.Product;
@@ -25,128 +28,181 @@ import static sample.Listfortovar.buyprd;
 
 public class DeleteTovar {
 
-    public static double PricesforBuy = 0;
-    ;
-    private Connectionn b = new Connectionn();
-    public ObservableList<Product> productsData = FXCollections.observableArrayList();
+    public ObservableList<Product_value> productsData = FXCollections.observableArrayList();
 
-    public void addTovars() {
-        Listfortovar.clothess.clear();
-        Listfortovar.foods.clear();
-        Listfortovar.techs.clear();
-        productsData.clear();
-
-
-        Connectionn b = new Connectionn();
-        b.addtoProgramm();
-        for (int i = 0; i < Listfortovar.techs.size(); i++) {
-            productsData.add((Listfortovar.techs.get(i)));
-        }
-        for (int i = 0; i < Listfortovar.clothess.size(); i++) {
-
-            productsData.add((Listfortovar.clothess.get(i)));
-        }
-        for (int i = 0; i < Listfortovar.foods.size(); i++) {
-            productsData.add((Listfortovar.foods.get(i)));
-        }
-    }
+    @FXML
+    private TableView<Product_value> tableUsers;
 
 
     @FXML
-    private TableView<Product> tableUsers;
+    private Label pageField;
 
 
     @FXML
     private Button backButton;
-    @FXML
-    private TableColumn<Product, Integer> idColumn;
 
     @FXML
-    private TableColumn<Product, String> nameColumn;
+    private Button backPageButton;
 
     @FXML
-    private TableColumn<Product, String> barcodeColumn;
+    private Button nextPageButton;
 
 
     @FXML
-    private TableColumn<Product, String> priceColumn;
+    private TableColumn<Product_value, Integer> idColumn;
 
+    @FXML
+    private TableColumn<Product_value, String> nameColumn;
+
+    @FXML
+    private TableColumn<Product_value, String> barcodeColumn;
+
+
+    @FXML
+    private TableColumn<Product_value, String> priceColumn;
+
+    @FXML
+    private TableColumn<Product_value, String> quantityColumn;
+
+
+    private void listProductUpload() {
+        JSONObject product_json = new JSONObject();
+
+
+        try {
+            String params = String.format("startLimit=%s&&limit=%s", (currentPage - 1) * rowOnPage, rowOnPage);
+
+            product_json = HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_List_Product, params);
+
+            JSONArray key = product_json.names();
+            productsData = FXCollections.observableArrayList();
+            for (int i = 0; i < key.length(); ++i) {
+                String keys = null;
+                try {
+                    keys = key.getString(i);
+                    productsData.add(new Product_value(new JSONObject(product_json.getString(keys))));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        tableUsers.setItems(productsData);
+
+
+    }
+
+
+    private int currentPage = 1;
+    private int maxPage = 1;
+    private static int rowOnPage = 10;
 
 
     @FXML
     private void initialize() {
 
-        addTovars();
-        backButton.setOnAction(event -> {
-            backButton.getScene().getWindow().hide();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Stage primaryStage_2 = new Stage();
-            primaryStage_2.setTitle("Администратор");
-
-            primaryStage_2.setScene(new Scene(root));
-            primaryStage_2.setMaximized(true);
-            primaryStage_2.setResizable(false);
-            primaryStage_2.show();
-        });
-
-
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("barcode"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Product_value, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("name"));
+        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("barcode"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("price"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("quantity"));
 
 
         tableUsers.setItems(productsData);
 
 
+        JSONObject rowcountJson = new JSONObject();
+
+        try {
+            rowcountJson = HttpURLConnectionExample.sendGET(HttpURLConnectionExample.GET_URL_COUNT_ROW);
+            if (rowcountJson.getInt("rowcount") % rowOnPage == 0)
+                maxPage = (int) (rowcountJson.getInt("rowcount") / rowOnPage);
+            else maxPage = (int) (rowcountJson.getInt("rowcount") / rowOnPage + 1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
+        pageField.setText(String.format("%s / %s", currentPage, maxPage));
+
+        listProductUpload();
 
 
+        backButton.setOnAction(event -> {
+            backButton.getScene().getWindow().hide();
+        });
 
+
+        nextPageButton.setOnAction(event -> {
+            if (currentPage < maxPage) {
+                currentPage += 1;
+                listProductUpload();
+                pageField.setText(String.format("%s / %s", currentPage, maxPage));
+            }
+
+        });
+
+
+        backPageButton.setOnAction(event -> {
+            if (currentPage > 1) {
+                currentPage -= 1;
+                listProductUpload();
+                pageField.setText(String.format("%s / %s", currentPage, maxPage));
+            }
+
+        });
 
 
         tableUsers.setRowFactory(tv -> {
-            TableRow<Product> row = new TableRow<>();
+            TableRow<Product_value> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    Product rowData = row.getItem();
-                    System.out.println(rowData.getBarcode());
-                    deleteProductType(rowData);
+                    Product_value rowData = row.getItem();
+                    deleteProduct(rowData);
                 }
             });
             return row;
         });
+
     }
-    public boolean deleteProductType(Product product) {
-            if(product.getClass().getName() == "sample.pojo.Clothes"){
-                b.deleteElement(1,product.getId());
-                addTovars();
-                return true;}
-            else {
-                if (product.getClass().getName() == "sample.pojo.Food") {
-                    b.deleteElement(2,product.getId());
-                    addTovars();
-                    return true;
-                } else {
-                    if (product.getClass().getName() == "sample.pojo.Tech") {
-                        b.deleteElement(3,product.getId());
-                        addTovars();
-                        return true;
-                    } else return false;
 
-                }
+    public void deleteProduct(Product_value product){
 
-            }
+
+        try {
+            String params = String.format("barcode=%s", product.getBarcode());
+
+            HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_DELETE, params);
+
+            JSONObject rowcountJson = new JSONObject();
+
+            rowcountJson = HttpURLConnectionExample.sendGET(HttpURLConnectionExample.GET_URL_COUNT_ROW);
+            if (rowcountJson.getInt("rowcount") % rowOnPage == 0)
+                maxPage = (int) (rowcountJson.getInt("rowcount") / rowOnPage);
+            else maxPage = (int) (rowcountJson.getInt("rowcount") / rowOnPage + 1);
+
+            pageField.setText(String.format("%s / %s", currentPage, maxPage));
+
+            listProductUpload();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
 
     }
 
 }
+
