@@ -59,7 +59,7 @@ public class DeleteTovar {
 
 
     @FXML
-    private TableColumn<Product_value, String> priceColumn;
+    private TableColumn<Product_value, String> priceColumn ;
 
     @FXML
     private TableColumn<Product_value, String> quantityColumn;
@@ -95,6 +95,7 @@ public class DeleteTovar {
         tableUsers.setItems(productsData);
 
 
+
     }
 
 
@@ -114,6 +115,7 @@ public class DeleteTovar {
 
 
         tableUsers.setItems(productsData);
+
 
 
         JSONObject rowcountJson = new JSONObject();

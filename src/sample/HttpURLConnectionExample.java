@@ -27,6 +27,9 @@ public class HttpURLConnectionExample {
     public static final String POST_URL_ALL = " http://cc2db5df.ngrok.io/barcodeall";
     public static final String POST_URL_SUBCATEGORY = " http://cc2db5df.ngrok.io/category";
     public static final String POST_URL_MANUFACTORY = " http://cc2db5df.ngrok.io/manufacturer";
+    public static final String POST_URL_EDIT = " http://cc2db5df.ngrok.io/edit";
+    public static final String POST_URL_EDIT_FEATURE = " http://cc2db5df.ngrok.io/edit_features";
+
 
      private static final String POST_PARAMS_DEMO = "barcode=644832819197";
 
