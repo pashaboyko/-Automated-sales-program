@@ -190,7 +190,7 @@ public class EditTovar {
             FXMLLoader loader = new FXMLLoader();
             if(product.get_category().equalsIgnoreCase( "одежда") ){
 
-                loader.setLocation(getClass().getResource("editClothes.fxml"));
+                loader.setLocation(getClass().getResource("views/editClothes.fxml"));
 
                 AnchorPane page = (AnchorPane) loader.load();
                 // Create the dialog Stage.
@@ -210,7 +210,7 @@ public class EditTovar {
                 return true;}
             else {
                 if (product.get_category().equalsIgnoreCase( "продукты")) {
-                    loader.setLocation(getClass().getResource("editFood.fxml"));
+                    loader.setLocation(getClass().getResource("views/editFood.fxml"));
 
                     AnchorPane page = (AnchorPane) loader.load();
                     // Create the dialog Stage.
@@ -231,7 +231,7 @@ public class EditTovar {
                     return true;
                 } else {
                     if (product.get_category().equalsIgnoreCase( "техника")) {
-                        loader.setLocation(getClass().getResource("editTech.fxml"));
+                        loader.setLocation(getClass().getResource("views/editTech.fxml"));
                         AnchorPane page = (AnchorPane) loader.load();
 
                         // Create the dialog Stage.
@@ -253,7 +253,7 @@ public class EditTovar {
                         return true;
                     } else{
                         if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
-                            loader.setLocation(getClass().getResource("editChem.fxml"));
+                            loader.setLocation(getClass().getResource("views/editChem.fxml"));
                             AnchorPane page = (AnchorPane) loader.load();
 
                             // Create the dialog Stage.

@@ -15,20 +15,21 @@ import java.net.URL;
 
 public class HttpURLConnectionExample {
     private static final String USER_AGENT = "Mozilla/5.0";
-    public static final String POST_URL_ADMIN = "http://cc2db5df.ngrok.io/entering";
-    private static final String POST_URL_BARCODE = " http://cc2db5df.ngrok.io/barcode";
-    public static final String GET_URL_COUNT_ROW = " http://cc2db5df.ngrok.io/rowcount";
-    public static final String POST_URL_INFO = " http://cc2db5df.ngrok.io/info";
-    public static final String POST_URL_DELETE = " http://cc2db5df.ngrok.io/delete";
-    public static final String POST_URL_List_Product = " http://cc2db5df.ngrok.io/listProductlimit";
-    public static final String POST_URL_BARCODE_BOOL = " http://cc2db5df.ngrok.io/checkbarcode";
-    public static final String POST_URL_ADD = " http://cc2db5df.ngrok.io/add";
-    public static final String POST_URL_ADD_FEATURES = " http://cc2db5df.ngrok.io/add_features";
-    public static final String POST_URL_ALL = " http://cc2db5df.ngrok.io/barcodeall";
-    public static final String POST_URL_SUBCATEGORY = " http://cc2db5df.ngrok.io/category";
-    public static final String POST_URL_MANUFACTORY = " http://cc2db5df.ngrok.io/manufacturer";
-    public static final String POST_URL_EDIT = " http://cc2db5df.ngrok.io/edit";
-    public static final String POST_URL_EDIT_FEATURE = " http://cc2db5df.ngrok.io/edit_features";
+    private static final String http = "http://581e747f.ngrok.io";
+    public static final String POST_URL_ADMIN = http + "/entering";
+    private static final String POST_URL_BARCODE = http + "/barcode";
+    public static final String GET_URL_COUNT_ROW = http + "/rowcount";
+    public static final String POST_URL_INFO = http + "/info";
+    public static final String POST_URL_DELETE = http + "/delete";
+    public static final String POST_URL_List_Product = http + "/listProductlimit";
+    public static final String POST_URL_BARCODE_BOOL = http + "/checkbarcode";
+    public static final String POST_URL_ADD = http + "/add";
+    public static final String POST_URL_ADD_FEATURES = http + "/add_features";
+    public static final String POST_URL_ALL = http + "/barcodeall";
+    public static final String POST_URL_SUBCATEGORY = http + "/category";
+    public static final String POST_URL_MANUFACTORY = http + "/manufacturer";
+    public static final String POST_URL_EDIT = http + "/edit";
+    public static final String POST_URL_EDIT_FEATURE = http + "/edit_features";
 
 
      private static final String POST_PARAMS_DEMO = "barcode=644832819197";

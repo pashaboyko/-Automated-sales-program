@@ -24,7 +24,7 @@ import static sample.Listfortovar.product;
 public class Controller {
     private static final String POST_URL_DEMO = "http://cc2db5df.ngrok.io/barcodeall";
 
-    public static double PricesforBuy=0; ;
+    public static double PricesforBuy=0;
 
     public ObservableList<Product_value> productsData = FXCollections.observableArrayList();
 
