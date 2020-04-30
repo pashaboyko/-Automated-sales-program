@@ -145,12 +145,10 @@ public class Controller {
     }
     public boolean showPersonEditDialog(Product_value product) {
         try {
-
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             if(product.get_category().equalsIgnoreCase( "одежда") ){
 
-<<<<<<< HEAD
             loader.setLocation(getClass().getResource("views/infoAboutClothes.fxml"));
 
             AnchorPane page = (AnchorPane) loader.load();
@@ -170,7 +168,8 @@ public class Controller {
             dialogStage.showAndWait();
             return true;}
         else {
-=======
+
+                if (product.get_category().equalsIgnoreCase( "одежда")){
                 loader.setLocation(getClass().getResource("infoAboutClothes.fxml"));
 
                 AnchorPane page = (AnchorPane) loader.load();
@@ -190,73 +189,72 @@ public class Controller {
                 dialogStage.showAndWait();
                 return true;}
             else {
->>>>>>> master
-                if (product.get_category().equalsIgnoreCase( "продукты")) {
-                    loader.setLocation(getClass().getResource("views/infoAboutFood.fxml"));
+                    if (product.get_category().equalsIgnoreCase("продукты")) {
+                        loader.setLocation(getClass().getResource("views/infoAboutFood.fxml"));
 
-                    AnchorPane page = (AnchorPane) loader.load();
-                    // Create the dialog Stage.
-                    Stage dialogStage = new Stage();
-                    dialogStage.setTitle("Info about food");
-                    dialogStage.initModality(Modality.WINDOW_MODAL);
-
-                    Scene scene = new Scene(page);
-                    dialogStage.setScene(scene);
-
-                    // Set the person into the controller.
-                    InfoAboutFood controller = loader.getController();
-                    controller.setDialogStage(dialogStage);
-                    controller.setProduct(product);
-
-                    // Show the dialog and wait until the user closes it
-                    dialogStage.showAndWait();
-                    return true;
-                } else {
-                    if (product.get_category().equalsIgnoreCase( "техника")) {
-                        loader.setLocation(getClass().getResource("views/infoAboutTech.fxml"));
                         AnchorPane page = (AnchorPane) loader.load();
-
                         // Create the dialog Stage.
                         Stage dialogStage = new Stage();
-                        dialogStage.setTitle("Info about Tech");
+                        dialogStage.setTitle("Info about food");
                         dialogStage.initModality(Modality.WINDOW_MODAL);
-                        // Create the dialog С.
+
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
 
                         // Set the person into the controller.
-                        InfoAboutTech controller = loader.getController();
+                        InfoAboutFood controller = loader.getController();
                         controller.setDialogStage(dialogStage);
                         controller.setProduct(product);
 
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
                         return true;
-                    } else{
-                        if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
-                            loader.setLocation(getClass().getResource("views/infoAboutСhemical.fxml"));
+                    } else {
+                        if (product.get_category().equalsIgnoreCase("техника")) {
+                            loader.setLocation(getClass().getResource("views/infoAboutTech.fxml"));
                             AnchorPane page = (AnchorPane) loader.load();
 
                             // Create the dialog Stage.
                             Stage dialogStage = new Stage();
-                            dialogStage.setTitle("Info about Chemical");
+                            dialogStage.setTitle("Info about Tech");
                             dialogStage.initModality(Modality.WINDOW_MODAL);
                             // Create the dialog С.
                             Scene scene = new Scene(page);
                             dialogStage.setScene(scene);
 
                             // Set the person into the controller.
-                            InfoAboutChemical controller = loader.getController();
+                            InfoAboutTech controller = loader.getController();
                             controller.setDialogStage(dialogStage);
                             controller.setProduct(product);
 
                             // Show the dialog and wait until the user closes it
                             dialogStage.showAndWait();
                             return true;
-                        } else return false;
+                        } else {
+                            if (product.get_category().equalsIgnoreCase("бытовая_химия")) {
+                                loader.setLocation(getClass().getResource("views/infoAboutСhemical.fxml"));
+                                AnchorPane page = (AnchorPane) loader.load();
+
+                                // Create the dialog Stage.
+                                Stage dialogStage = new Stage();
+                                dialogStage.setTitle("Info about Chemical");
+                                dialogStage.initModality(Modality.WINDOW_MODAL);
+                                // Create the dialog С.
+                                Scene scene = new Scene(page);
+                                dialogStage.setScene(scene);
+
+                                // Set the person into the controller.
+                                InfoAboutChemical controller = loader.getController();
+                                controller.setDialogStage(dialogStage);
+                                controller.setProduct(product);
+
+                                // Show the dialog and wait until the user closes it
+                                dialogStage.showAndWait();
+                                return true;
+                            } else return false;
+                        }
                     }
-                }
-            }
+            } }
         }
 
         catch (IOException e) {
