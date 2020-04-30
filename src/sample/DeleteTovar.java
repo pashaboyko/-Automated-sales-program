@@ -3,28 +3,18 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 
 
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sample.pojo.Clothes;
-import sample.pojo.Food;
-import sample.pojo.Product;
-import sample.pojo.Tech;
+import sample.pojo.*;
 
 import java.io.IOException;
 
-import static sample.Listfortovar.buyprd;
 
 public class DeleteTovar {
 

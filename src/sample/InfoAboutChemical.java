@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import sample.pojo.Product_value;
 
 
 public class InfoAboutChemical {

@@ -1,6 +1,9 @@
 package sample;
 
+<<<<<<< HEAD
 //import com.sun.javadoc.SourcePosition;
+=======
+>>>>>>> Java-19
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,17 +19,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
-import sample.pojo.Clothes;
-import sample.pojo.Food;
-import sample.pojo.Product;
-import sample.pojo.Tech;
-import sun.net.SocksProxy;
+import sample.pojo.*;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import javax.xml.soap.SOAPPart;
 import java.io.IOException;
 
-import static sample.Listfortovar.buyprd;
 import static sample.Listfortovar.product;
 
 public class Controller {
@@ -95,7 +91,7 @@ public class Controller {
             printButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("good.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/good.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

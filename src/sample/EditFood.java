@@ -4,14 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sample.pojo.Features;
+import sample.pojo.Category;
 import sample.pojo.Manufactory;
+import sample.pojo.Product_value;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,7 +54,7 @@ public class EditFood {
 
 
     @FXML
-    private ChoiceBox<Features> categoryBox;
+    private ChoiceBox<Category> categoryBox;
 
     @FXML
     private ChoiceBox<Manufactory> manufactureBox;
@@ -71,7 +71,7 @@ public class EditFood {
     @FXML
     private DatePicker datePicker;
 
-    private ObservableList<Features> fList = FXCollections.observableArrayList();
+    private ObservableList<Category> fList = FXCollections.observableArrayList();
     private ObservableList<Manufactory> mList = FXCollections.observableArrayList();
 
     private int id_product ;
@@ -113,7 +113,7 @@ public class EditFood {
             String keys = null;
             try {
                 keys = key.getString(i);
-                fList.add( new Features(Integer.parseInt(keys), features.getString(keys)));
+                fList.add( new Category(Integer.parseInt(keys), features.getString(keys)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

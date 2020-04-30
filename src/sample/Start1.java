@@ -47,7 +47,7 @@ public class Start1 {
             admin.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/Admin.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,7 +68,7 @@ public class Start1 {
            startButton.getScene().getWindow().hide();
            Parent root = null;
            try {
-               root = FXMLLoader.load(getClass().getResource("main1.fxml"));
+               root = FXMLLoader.load(getClass().getResource("views/main1.fxml"));
            } catch (IOException e) {
                e.printStackTrace();
            }

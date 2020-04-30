@@ -14,38 +14,34 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.pojo.Clothes;
-import sample.pojo.Food;
-import sample.pojo.Product;
-import sample.pojo.Tech;
+import org.json.JSONException;
+import sample.pojo.*;
 
 import java.io.IOException;
 
-import static sample.Listfortovar.buyprd;
+import static sample.Listfortovar.product;
 
 public class Controller1 {
+    private static final String POST_URL_DEMO = "http://cc2db5df.ngrok.io/barcodeall";
 
     public static double PricesforBuy=0; ;
 
-    public ObservableList<Product> productsData = FXCollections.observableArrayList();
+    public ObservableList<Product_value> productsData = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Product> tableUsers;
+    private TableView<Product_value> tableUsers;
 
     @FXML
     private Button printButton;
-    @FXML
-    private TableColumn<Product, Integer> idColumn;
-
-    @FXML
-    private TableColumn<Product, String> nameColumn;
-
-    @FXML
-    private TableColumn<Product, String> barcodeColumn;
 
 
     @FXML
-    private TableColumn<Product, String> priceColumn;
+    private TableColumn<Product_value, String> nameColumn;
+
+
+
+    @FXML
+    private TableColumn<Product_value, String> priceColumn;
     @FXML
     private TextField BarcodeText;
     @FXML
@@ -63,13 +59,11 @@ public class Controller1 {
     @FXML
     private void initialize() {
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("barcode"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product_value, String>("price"));
 
         tableUsers.setItems(productsData);
+
         printButton.setOnAction(event -> {
 
           /* Printer printer = Printer.getDefaultPrinter();
@@ -94,7 +88,7 @@ public class Controller1 {
             printButton.getScene().getWindow().hide();
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("good1.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/good.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -109,51 +103,41 @@ public class Controller1 {
             Bill_form Formbill=new Bill_form();
             Formbill.startPrint();
             productsData.clear();
-            buyprd.clear();
+            product.clear();
+
         });
 
+
+
+
         BarcodeText.setOnAction(event -> {
-            Listfortovar.clothess.clear();
-            Listfortovar.foods.clear();
-            Listfortovar.techs.clear();
-            Connectionn b = new Connectionn();
-            b.addtoProgramm();
-            for (int i = 0; i < Listfortovar.techs.size(); i++) {
-                if (Listfortovar.techs.get(i).getBarcode().equals(BarcodeText.getText())) {
-                    productsData.add((Listfortovar.techs.get(i)));
-                    buyprd.add((Listfortovar.techs.get(i)));
 
-                }
-            }
-            for (int i = 0; i < Listfortovar.clothess.size(); i++) {
-                if (Listfortovar.clothess.get(i).getBarcode().equals(BarcodeText.getText())) {
-                    productsData.add((Listfortovar.clothess.get(i)));
-                    buyprd.add((Listfortovar.clothess.get(i)));
+            try {
+                String params = String.format("barcode=%s", BarcodeText.getText());
+                Product_value product = new Product_value(HttpURLConnectionExample.sendPOST(HttpURLConnectionExample.POST_URL_ALL, params));
+                System.out.println(product);
+                productsData.add(product);
+                Listfortovar.product.add(product);
 
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            for (int i = 0; i < Listfortovar.foods.size(); i++) {
-                if (Listfortovar.foods.get(i).getBarcode().equals(BarcodeText.getText())) {
-                    productsData.add((Listfortovar.foods.get(i)));
-                    buyprd.add((Listfortovar.foods.get(i)));
 
-                }
-            }
             labPrice.setText(String.format("%s", checkAll()));
             BarcodeText.clear();
-
 
         });
 
 
 
         tableUsers.setRowFactory(tv -> {
-            TableRow<Product> row = new TableRow<>();
+            TableRow<Product_value> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    Product rowData = row.getItem();
-                    System.out.println(rowData.getBarcode());
-                    //showPersonEditDialog(rowData);
+                    Product_value rowData = row.getItem();
+                    showPersonEditDialog(rowData);
                 }
             });
             return row;
@@ -226,7 +210,29 @@ public class Controller1 {
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
                         return true;
-                    } else return false;
+                    } else{
+                        if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
+                            loader.setLocation(getClass().getResource("infoAboutСhemical.fxml"));
+                            AnchorPane page = (AnchorPane) loader.load();
+
+                            // Create the dialog Stage.
+                            Stage dialogStage = new Stage();
+                            dialogStage.setTitle("Info about Chemical");
+                            dialogStage.initModality(Modality.WINDOW_MODAL);
+                            // Create the dialog С.
+                            Scene scene = new Scene(page);
+                            dialogStage.setScene(scene);
+
+                            // Set the person into the controller.
+                            InfoAboutChemical controller = loader.getController();
+                            controller.setDialogStage(dialogStage);
+                            controller.setProduct(product);
+
+                            // Show the dialog and wait until the user closes it
+                            dialogStage.showAndWait();
+                            return true;
+                        } else return false;
+                    }
                 }
             }
         }
@@ -236,5 +242,6 @@ public class Controller1 {
             return false;
         }
     }
+
 
 }

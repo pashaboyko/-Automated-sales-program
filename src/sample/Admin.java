@@ -57,7 +57,7 @@ public class Admin {
                 addTovar.getScene().getWindow().hide();
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("typeOfTovar.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("views/typeOfTovar.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -81,7 +81,7 @@ public class Admin {
 
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("main.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/main.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,7 +100,7 @@ public class Admin {
                 wrongPane.setVisible(false);
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("typeOfTovar.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/typeOfTovar.fxml"));
             } catch (IOException e) {
             e.printStackTrace();
             }
@@ -120,7 +120,7 @@ public class Admin {
                 wrongPane.setVisible(false);
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("editTovar.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("views/editTovar.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -141,7 +141,7 @@ public class Admin {
             if(checkAdmin(adminCode.getText() , passwordCode.getText())) {
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("deleteTovar.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("views/deleteTovar.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

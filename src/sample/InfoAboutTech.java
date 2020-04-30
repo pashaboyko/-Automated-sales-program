@@ -14,15 +14,14 @@ import javafx.stage.Stage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import sample.pojo.Clothes;
 
-import sample.pojo.Product;
-import sample.pojo.Tech;
+
+import sample.pojo.Product_value;
 
 
 public class InfoAboutTech {
     private Stage dialogStage;
-    private Product product;
+
     @FXML
     private ResourceBundle resources;
 
