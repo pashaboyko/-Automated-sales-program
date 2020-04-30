@@ -150,7 +150,7 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader();
             if(product.get_category().equalsIgnoreCase( "одежда") ){
 
-            loader.setLocation(getClass().getResource("infoAboutClothes.fxml"));
+            loader.setLocation(getClass().getResource("views/infoAboutClothes.fxml"));
 
             AnchorPane page = (AnchorPane) loader.load();
             // Create the dialog Stage.
@@ -170,7 +170,7 @@ public class Controller {
             return true;}
         else {
                 if (product.get_category().equalsIgnoreCase( "продукты")) {
-                    loader.setLocation(getClass().getResource("infoAboutFood.fxml"));
+                    loader.setLocation(getClass().getResource("views/infoAboutFood.fxml"));
 
                     AnchorPane page = (AnchorPane) loader.load();
                     // Create the dialog Stage.
@@ -191,7 +191,7 @@ public class Controller {
                     return true;
                 } else {
                     if (product.get_category().equalsIgnoreCase( "техника")) {
-                        loader.setLocation(getClass().getResource("infoAboutTech.fxml"));
+                        loader.setLocation(getClass().getResource("views/infoAboutTech.fxml"));
                         AnchorPane page = (AnchorPane) loader.load();
 
                         // Create the dialog Stage.
@@ -212,7 +212,7 @@ public class Controller {
                         return true;
                         } else{
                         if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
-                            loader.setLocation(getClass().getResource("infoAboutСhemical.fxml"));
+                            loader.setLocation(getClass().getResource("views/infoAboutСhemical.fxml"));
                             AnchorPane page = (AnchorPane) loader.load();
 
                             // Create the dialog Stage.
