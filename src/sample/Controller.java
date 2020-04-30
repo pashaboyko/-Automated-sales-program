@@ -25,7 +25,7 @@ import static sample.Listfortovar.product;
 public class Controller {
     private static final String POST_URL_DEMO = "http://cc2db5df.ngrok.io/barcodeall";
 
-    public static double PricesforBuy=0; ;
+    public static double PricesforBuy=0;
 
     public ObservableList<Product_value> productsData = FXCollections.observableArrayList();
 
@@ -150,6 +150,27 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader();
             if(product.get_category().equalsIgnoreCase( "одежда") ){
 
+<<<<<<< HEAD
+            loader.setLocation(getClass().getResource("views/infoAboutClothes.fxml"));
+
+            AnchorPane page = (AnchorPane) loader.load();
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Info about clothes");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            InfoAboutClothes controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setProduct(product);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            return true;}
+        else {
+=======
                 loader.setLocation(getClass().getResource("infoAboutClothes.fxml"));
 
                 AnchorPane page = (AnchorPane) loader.load();
@@ -169,8 +190,9 @@ public class Controller {
                 dialogStage.showAndWait();
                 return true;}
             else {
+>>>>>>> master
                 if (product.get_category().equalsIgnoreCase( "продукты")) {
-                    loader.setLocation(getClass().getResource("infoAboutFood.fxml"));
+                    loader.setLocation(getClass().getResource("views/infoAboutFood.fxml"));
 
                     AnchorPane page = (AnchorPane) loader.load();
                     // Create the dialog Stage.
@@ -191,7 +213,7 @@ public class Controller {
                     return true;
                 } else {
                     if (product.get_category().equalsIgnoreCase( "техника")) {
-                        loader.setLocation(getClass().getResource("infoAboutTech.fxml"));
+                        loader.setLocation(getClass().getResource("views/infoAboutTech.fxml"));
                         AnchorPane page = (AnchorPane) loader.load();
 
                         // Create the dialog Stage.
@@ -212,7 +234,7 @@ public class Controller {
                         return true;
                     } else{
                         if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
-                            loader.setLocation(getClass().getResource("infoAboutСhemical.fxml"));
+                            loader.setLocation(getClass().getResource("views/infoAboutСhemical.fxml"));
                             AnchorPane page = (AnchorPane) loader.load();
 
                             // Create the dialog Stage.
