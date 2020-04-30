@@ -16,10 +16,17 @@ import java.net.URL;
 public class HttpURLConnectionExample {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String http = "http://cc2db5df.ngrok.io";
+<<<<<<< HEAD
     public static final String POST_URL_ADMIN = http + "/entering";
     private static final String POST_URL_BARCODE = http + "/barcode";
     public static final String GET_URL_COUNT_ROW = http + "/rowcount";
     public static final String POST_URL_INFO = http + "/info";
+=======
+    public static final String POST_URL_ADMIN = "http://cc2db5df.ngrok.io/entering";
+    private static final String POST_URL_BARCODE = http + "/barcode";
+    public static final String GET_URL_COUNT_ROW = http + "/rowcount";
+    public static final String POST_URL_INFO = http+ "/info";
+>>>>>>> master
     public static final String POST_URL_DELETE = http + "/delete";
     public static final String POST_URL_List_Product = http + "/listProductlimit";
     public static final String POST_URL_BARCODE_BOOL = http + "/checkbarcode";

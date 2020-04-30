@@ -1,5 +1,6 @@
 package sample;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,7 +71,6 @@ public class Controller {
             Stage dialogStage = new Stage(StageStyle.DECORATED);
             PrinterJob job = PrinterJob.createPrinterJob(printer);
             if (job != null) {
-
                 tableUsers.setScaleX(0.60);
                 tableUsers.setScaleY(0.60);
                 tableUsers.setTranslateX(-720);
@@ -150,6 +150,7 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader();
             if(product.get_category().equalsIgnoreCase( "одежда") ){
 
+<<<<<<< HEAD
             loader.setLocation(getClass().getResource("views/infoAboutClothes.fxml"));
 
             AnchorPane page = (AnchorPane) loader.load();
@@ -169,6 +170,27 @@ public class Controller {
             dialogStage.showAndWait();
             return true;}
         else {
+=======
+                loader.setLocation(getClass().getResource("infoAboutClothes.fxml"));
+
+                AnchorPane page = (AnchorPane) loader.load();
+                // Create the dialog Stage.
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Info about clothes");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+
+                // Set the person into the controller.
+                InfoAboutClothes controller = loader.getController();
+                controller.setDialogStage(dialogStage);
+                controller.setProduct(product);
+                // Show the dialog and wait until the user closes it
+                dialogStage.showAndWait();
+                return true;}
+            else {
+>>>>>>> master
                 if (product.get_category().equalsIgnoreCase( "продукты")) {
                     loader.setLocation(getClass().getResource("views/infoAboutFood.fxml"));
 
@@ -210,7 +232,7 @@ public class Controller {
                         // Show the dialog and wait until the user closes it
                         dialogStage.showAndWait();
                         return true;
-                        } else{
+                    } else{
                         if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
                             loader.setLocation(getClass().getResource("views/infoAboutСhemical.fxml"));
                             AnchorPane page = (AnchorPane) loader.load();
@@ -233,11 +255,11 @@ public class Controller {
                             return true;
                         } else return false;
                     }
-                    }
                 }
             }
+        }
 
-         catch (IOException e) {
+        catch (IOException e) {
             e.printStackTrace();
             return false;
         }

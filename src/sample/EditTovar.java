@@ -190,7 +190,11 @@ public class EditTovar {
             FXMLLoader loader = new FXMLLoader();
             if(product.get_category().equalsIgnoreCase( "одежда") ){
 
+<<<<<<< HEAD
                 loader.setLocation(getClass().getResource("views/editClothes.fxml"));
+=======
+                loader.setLocation(getClass().getResource("view/editClothes.fxml"));
+>>>>>>> master
 
                 AnchorPane page = (AnchorPane) loader.load();
                 // Create the dialog Stage.
@@ -210,7 +214,11 @@ public class EditTovar {
                 return true;}
             else {
                 if (product.get_category().equalsIgnoreCase( "продукты")) {
+<<<<<<< HEAD
                     loader.setLocation(getClass().getResource("views/editFood.fxml"));
+=======
+                    loader.setLocation(getClass().getResource("view/editFood.fxml"));
+>>>>>>> master
 
                     AnchorPane page = (AnchorPane) loader.load();
                     // Create the dialog Stage.
@@ -231,7 +239,11 @@ public class EditTovar {
                     return true;
                 } else {
                     if (product.get_category().equalsIgnoreCase( "техника")) {
+<<<<<<< HEAD
                         loader.setLocation(getClass().getResource("views/editTech.fxml"));
+=======
+                        loader.setLocation(getClass().getResource("view/editTech.fxml"));
+>>>>>>> master
                         AnchorPane page = (AnchorPane) loader.load();
 
                         // Create the dialog Stage.
@@ -253,7 +265,11 @@ public class EditTovar {
                         return true;
                     } else{
                         if (product.get_category().equalsIgnoreCase( "бытовая_химия")) {
+<<<<<<< HEAD
                             loader.setLocation(getClass().getResource("views/editChem.fxml"));
+=======
+                            loader.setLocation(getClass().getResource("view/editChem.fxml"));
+>>>>>>> master
                             AnchorPane page = (AnchorPane) loader.load();
 
                             // Create the dialog Stage.
