@@ -22,7 +22,7 @@
             </DropShadow>
          </effect>
          <children>
-            <Text fill="#575151" layoutX="91.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your password and barcode" textAlignment="CENTER" wrappingWidth="297.13348388671875" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="89.86651611328125">
+            <Text fill="#575151" layoutX="72.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your password and barcode" textAlignment="CENTER" wrappingWidth="335.13348388671875" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="70.86651611328125">
                <font>
                   <Font size="21.0" />
                </font>
