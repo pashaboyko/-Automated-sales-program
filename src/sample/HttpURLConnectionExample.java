@@ -15,8 +15,8 @@ import java.net.URL;
 
 public class HttpURLConnectionExample {
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static final String http = "http://2a933a3b.ngrok.io";
-    public static final String POST_URL_ADMIN = http + "/entering";
+    private static final String http = "http://cc2db5df.ngrok.io";
+    public static final String POST_URL_ADMIN = "http://cc2db5df.ngrok.io/entering";
     private static final String POST_URL_BARCODE = http + "/barcode";
     public static final String GET_URL_COUNT_ROW = http + "/rowcount";
     public static final String POST_URL_INFO = http+ "/info";

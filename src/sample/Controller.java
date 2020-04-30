@@ -1,9 +1,6 @@
 package sample;
 
-<<<<<<< HEAD
-//import com.sun.javadoc.SourcePosition;
-=======
->>>>>>> Java-19
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
